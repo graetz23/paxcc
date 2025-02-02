@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -24,34 +24,42 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-
 #include <map>
 #include <unordered_map>
 #include <vector>
+#include <algorithm>
 #include <iostream>
 
-namespace PAXCC {
+namespace PAXCC
+{
 
-class PaxMap {
+    /**
+     * @brief Template based class representing an easy to handle
+     * hash map that is ordered by the sequence of inserting.
+     *
+     */
+    class PaxMap
+    {
 
-private:
-    std::vector<std::string> _seq; // member
-    std::map<std::string, std::string> _map; // member
-    std::vector<std::string>::iterator _it; // member
+    private:
+        std::vector<std::string> _seq;           // member
+        std::map<std::string, std::string> _map; // member
+        std::vector<std::string>::iterator _it;  // member
 
-public:
+    public:
+        PaxMap(void);          // constructor
+        virtual ~PaxMap(void); // destructor
 
-    PaxMap( void ); // constructor
-    virtual ~PaxMap( void ); // destructor
+        bool has(std::string key);                    // method
+        bool add(std::string key, std::string value); // method
+        std::string get(std::string key);             // method
+        bool del(std::string key);                    // method
 
-    void put(std::string key, std::string value); // method
+        // protected:
 
-    std::string get(std::string key); // method
+        std::vector<std::string>::iterator start(); // method
+        std::vector<std::string>::iterator end();   // method
 
-    std::vector<std::string>::iterator start(); // method
-
-    std::vector<std::string>::iterator end(); // method
-
-}; // class
+    }; // class
 
 } // namespace

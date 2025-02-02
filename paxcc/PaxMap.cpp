@@ -37,11 +37,24 @@ namespace PAXCC
     {
     } // destructor
 
-    void
-    PaxMap::put(std::string key, std::string value)
+    bool 
+    PaxMap::has(std::string key) {
+        bool isStored = false;
+        if(_map.count( key ) > 0 ) {
+            isStored = true;
+        } // if
+        return isStored;
+    } // method
+
+    bool
+    PaxMap::add(std::string key, std::string value)
     {
-        _seq.push_back(key);
-        _map[key] = value;
+        bool wasStored = false;
+        if(!has(key)) {
+            _seq.push_back(key);
+            _map[key] = value;
+        } // if
+        return wasStored;
     } // method
 
     std::string
@@ -49,6 +62,19 @@ namespace PAXCC
     {
         return _map[key];
     } // method
+
+    bool 
+    PaxMap::del(std::string key) {
+        bool wasDeleted = false;
+        if(has( key )) {
+            _map.erase(key);
+            int index = &key - _seq.data();
+           // _seq.erase(std::remove(_seq.begin(), _seq.end(), &key), _seq.end());
+            wasDeleted = true;
+        } // if
+        return wasDeleted;
+    } // method
+
 
     std::vector<std::string>::iterator
     PaxMap::start()
