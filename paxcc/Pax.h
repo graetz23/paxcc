@@ -24,3 +24,12 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include "./PaxMap.h" // insertation sequence ordered hash map
+
+class Pax {
+
+private:
+
+public:
+
+}; // class

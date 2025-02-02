@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * PAXCC - Parse Any XML using C++
+ * PAXCC - A pretty simple C++ Data Passenger
  *
  * Copyright (c) 2025 Christian (graetz23@gmail.com)
  *
@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -29,26 +29,11 @@
 
 using namespace PAXCC;
 
-int main( int arc, char** argv ) {
+int main(int arc, char **argv)
+{
 
-  PaxMap pax;
-  pax.put("Bob", "Dylan");
-
-  for(int i=0; i < 100; i++) {
-    std::string key = std::to_string(i+1);
-    // const char* cKey = (const char*)key.c_str(); 
-    pax.put(key, key);
-  } // loopsecond
-
-  std::vector<std::string>::iterator it = pax.start();
-
-  for (pax.start(); it != pax.end(); it++)
-  {
-      std::cout << *it    // string (key)
-                << ' => '
-                // << pax.get(*it)   // string's value 
-                << std::endl;
-  }
+  PaxMap<std::string> map; // generally used hashmap ..
+  map.dbg();  // debugging the pax map ..
 
   return 0;
 } // main
