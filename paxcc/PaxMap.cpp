@@ -28,5 +28,5 @@
 
 namespace PAXCC
 {
-
+    // templates are headered implementations ..
 } // namespace

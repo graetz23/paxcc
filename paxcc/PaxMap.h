@@ -34,15 +34,20 @@ namespace PAXCC
 {
 
     /**
-     * @brief Template based class representing an easy to handle
-     * hash map that is ordered by the sequence of inserting.
+     * @brief Template based implementation of an easy to handle hash map that
+     * is sequence ordered following the sequence of inserting. It can delete
+     * items form itself, can tell its size, and can produce fresh vectors,
+     * either holding all ordered keys or holding all values.
+     *
+     * @remark There seems to be no need for pointered instation while using.
      *
      */
-    template<class V> class PaxMap
+    template <class V>
+    class PaxMap
     {
 
     private:
-        std::vector<std::string> _seq;                     // member
+        std::vector<std::string> _seq;           // member
         std::unordered_map<std::string, V> _map; // member
 
     public:
@@ -52,28 +57,40 @@ namespace PAXCC
         bool has(std::string key); // method
 
         bool add(std::string key, V val); // method
-        std::string get(std::string key);             // method
-        bool del(std::string key);                    // method
+        V get(std::string key);           // method
+        bool del(std::string key);        // method
 
         std::size_t cnt(void);               // method
         std::vector<std::string> keys(void); // method
-        std::vector<V> vals(void); // method
+        std::vector<V> vals(void);           // method
+
+        // const V& operator[](std::string key) const
+        // {
+
+        //     return vec[position];
+        // }
+
+        // T& operator[](std::string key)
+        // {
+        //     return const_cast<V&>(static_cast<const Foo&>(*this)[position]);
+        // }
 
         void dbg(void); // method
 
     }; // class
 
-    template<class V>
+    template <class V>
     PaxMap<V>::PaxMap(void)
     {
     } // constructor
 
-    template<class V>
+    template <class V>
     PaxMap<V>::~PaxMap(void)
     {
     } // destructor
 
-    template<class V> bool
+    template <class V>
+    bool
     PaxMap<V>::has(std::string key)
     {
         bool isStored = false;
@@ -84,7 +101,8 @@ namespace PAXCC
         return isStored;
     } // method
 
-    template<class V> bool
+    template <class V>
+    bool
     PaxMap<V>::add(std::string key, V value)
     {
         bool wasStored = false;
@@ -96,13 +114,14 @@ namespace PAXCC
         return wasStored;
     } // method
 
-    template<class V> std::string
-    PaxMap<V>::get(std::string key)
+    template <class V>
+    V PaxMap<V>::get(std::string key)
     {
         return _map[key];
     } // method
 
-    template<class V> bool
+    template <class V>
+    bool
     PaxMap<V>::del(std::string key)
     {
         bool wasDeleted = false;
@@ -115,7 +134,8 @@ namespace PAXCC
         return wasDeleted;
     } // method
 
-    template<class V> std::size_t
+    template <class V>
+    std::size_t
     PaxMap<V>::cnt(void)
     {
         std::size_t count = 0;
@@ -123,7 +143,8 @@ namespace PAXCC
         return count;
     } // method
 
-    template<class V> std::vector<std::string>
+    template <class V>
+    std::vector<std::string>
     PaxMap<V>::keys()
     {
         std::vector<std::string> vec;
@@ -138,7 +159,8 @@ namespace PAXCC
         return vec;
     } // method
 
-    template<class V> std::vector<V>
+    template <class V>
+    std::vector<V>
     PaxMap<V>::vals()
     {
         std::vector<V> vec;
@@ -157,7 +179,8 @@ namespace PAXCC
         return vec;
     } // method
 
-    template<class V> void
+    template <class V>
+    void
     PaxMap<V>::dbg(void)
     {
 
