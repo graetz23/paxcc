@@ -37,7 +37,7 @@ namespace PAXCC
     {
 
     private:
-        PaxMap<Pax*> _map; // member
+        PaxMap<Pax *> *_map; // member
 
     protected:
     public:
@@ -46,13 +46,16 @@ namespace PAXCC
 
         bool has(std::string tag); // method
 
-        bool add(Pax* pax);         // method
-        Pax* get(std::string tag);  // method
+        bool add(Pax *pax);                         // method
+        bool add(std::string tag);                  // method
+        bool add(std::string tag, std::string val); // method
+
+        Pax *get(std::string tag); // method
         bool del(std::string tag); // method
 
         size_t cnt(void);                // method
         std::vector<std::string> tags(); // method
-        std::vector<Pax*> vals();         // method
+        std::vector<Pax *> vals();       // method
 
     }; // class
 

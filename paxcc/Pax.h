@@ -45,19 +45,32 @@ namespace PAXCC
 
     protected:
     public:
-        Pax(void);          // constructor
-        virtual ~Pax(void); // destructor
+        Pax(void);                             // constructor
+        Pax(std::string tag);                  // constructor
+        Pax(std::string tag, std::string val); // constructor
+        Pax(Pax *pax);                         // constructor
+        virtual ~Pax(void);                    // destructor
 
         std::string Tag(void);     // method
         void Tag(std::string tag); // method
+        bool hasTag(void);         // method
 
         std::string Val(void);     // method
         void Val(std::string val); // method
+        bool hasVal(void);         // method
 
-        bool isValid(void); // method
+        Attributes *Attrib(void);     // method
+        Pax *Attrib(std::string tag); // method
+        bool hasAttrib(void);         // method
 
-        Attributes *Attrib(void); // method
-        Children *Child(void);    // method
+        Children *Child(void);       // method
+        Pax *Child(std::string tag); // method
+        bool hasChild();             // method
+        size_t cntChilds(); // method
+        std::vector<Pax *> Childs(); // method
+
+        std::string XML(void); // method
+        std::vector<std::string> XML_lines(void); // method
 
     }; // class
 

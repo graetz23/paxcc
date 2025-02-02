@@ -33,12 +33,39 @@ namespace PAXCC
     {
         _attributes = new Attributes();
         _children = new Children();
+        _tag.clear();
+        _val.clear();
+    } // constructor
+
+    Pax::Pax(std::string tag)
+    {
+        _attributes = new Attributes();
+        _children = new Children();
+        _tag = tag;
+        _val.clear();
+    } // constructor
+
+    Pax::Pax(std::string tag, std::string val)
+    {
+        _attributes = new Attributes();
+        _children = new Children();
+        _tag = tag;
+        _val = val;
+    } // constructor
+
+    Pax::Pax(Pax *pax)
+    {
+        // TODO do a recursive copy constructor here ..
     } // constructor
 
     Pax::~Pax(void)
     {
         delete _attributes;
+        _attributes = nullptr;
         delete _children;
+        _children = nullptr;
+        _val.clear();
+        _tag.clear();
     } // destructor
 
     std::string
@@ -51,6 +78,18 @@ namespace PAXCC
     Pax::Tag(std::string tag)
     {
         _tag = tag;
+    } // method
+
+    bool
+    Pax::hasTag(void)
+    {
+        bool hasTag = false;
+        std::string tag = Tag();
+        if (!tag.empty())
+        {
+            hasTag = true;
+        } // if
+        return hasTag;
     } // method
 
     std::string
@@ -66,27 +105,191 @@ namespace PAXCC
     } // method
 
     bool
-    Pax::isValid(void)
+    Pax::hasVal(void)
     {
-        bool isValid = true;
-        std::string na = "___na___";
-        if (Tag() == na && Val() == na)
+        bool hasVal = false;
+        std::string val = Val();
+        if (!val.empty())
         {
-            isValid = false;
+            hasVal = true;
         } // if
-        return isValid;
+        return hasVal;
     } // method
 
-    Attributes*
+    Attributes *
     Pax::Attrib(void)
     {
         return _attributes;
     } // method
 
-    Children*
+    Pax *
+    Pax::Attrib(std::string tag)
+    {
+        Pax *pax = _attributes->get(tag);
+        return pax;
+    } // method
+
+    bool Pax::hasAttrib(void)
+    {
+        bool hasAttrib = false;
+        size_t cnt = Attrib()->cnt();
+        if (cnt > 0)
+        {
+            hasAttrib = true;
+        } // if
+        return hasAttrib;
+    } // method
+
+    Children *
     Pax::Child(void)
     {
         return _children;
+    } // method
+
+    Pax *
+    Pax::Child(std::string tag)
+    {
+        Pax *pax = _children->get(tag);
+        return pax;
+    } // method
+
+    bool Pax::hasChild(void)
+    {
+        bool hasChild = false;
+        size_t cnt = Child()->cnt();
+        if (cnt > 0)
+        {
+            hasChild = true;
+        } // if
+        return hasChild;
+    } // method
+
+    size_t
+    Pax::cntChilds()
+    {
+        size_t cnt = Child()->cnt();
+        return cnt;
+    } // method
+
+    std::vector<Pax *> Pax::Childs()
+    {
+        std::vector<Pax *> vec = Child()->vals();
+        return vec;
+    } // method
+
+    std::vector<std::string>
+    Pax::XML_lines(void)
+    {
+        std::vector<std::string> vec;
+        if (!hasChild())
+        {
+            if (!hasAttrib())
+            { // no attributes
+                if (!hasVal())
+                { // standalone tag
+                    std::string xml;
+                    std::string tag = Tag();
+                    xml.append("<");
+                    xml.append(tag);
+                    xml.append(" />");
+                    xml.append("\n");
+                    vec.push_back(xml);
+                }
+                else
+                { // tag value
+                    std::string xml;
+                    std::string tag = Tag();
+                    std::string val = Val();
+                    xml.append("<");
+                    xml.append(tag);
+                    xml.append(">");
+                    xml.append(val);
+                    xml.append("</");
+                    xml.append(tag);
+                    xml.append(">");
+                    xml.append("\n");
+                    vec.push_back(xml);
+                } // if
+            }
+            else
+            { // add attributes
+                if (!hasVal())
+                { // standalone tag attributes
+                    std::string xml;
+                    std::string tag = Tag();
+                    std::string attribs = Attrib()->XML();
+                    xml.append("<");
+                    xml.append(tag);
+                    xml.append(" ");
+                    xml.append(attribs);
+                    xml.append(" />");
+                    xml.append("\n");
+                    vec.push_back(xml);
+                }
+                else
+                { // tag attributes value
+                    std::string xml;
+                    std::string tag = Tag();
+                    std::string val = Val();
+                    std::string attribs = Attrib()->XML();
+                    xml.append("<");
+                    xml.append(tag);
+                    xml.append(" ");
+                    xml.append(attribs);
+                    xml.append(">");
+                    xml.append(val);
+                    xml.append("</");
+                    xml.append(tag);
+                    xml.append(">");
+                    xml.append("\n");
+                    vec.push_back(xml);
+                } // if
+            } // if
+        }
+        else
+        { // recurse instead of value
+            std::string tag = Tag();
+            if (!hasAttrib())
+            { // no attributes
+                std::string xml_;
+                xml_.append("<");
+                xml_.append(tag);
+                xml_.append(">");
+                xml_.append("\n");
+                vec.push_back(xml_);
+            }
+            else
+            { // add attributes
+                std::string xml_;
+                std::string attribs = Attrib()->XML();
+                xml_.append("<");
+                xml_.append(tag);
+                xml_.append(" ");
+                xml_.append(attribs);
+                xml_.append(">");
+                xml_.append("\n");
+                vec.push_back(xml_);
+
+            } // if
+
+            std::string xml;
+            size_t cnt = cntChilds();
+            std::vector<Pax *> paxs = Childs();
+            for (size_t p = 0; p < cnt; p++)
+            { // here we go recursive ..
+                Pax *child = paxs[p];
+                std::vector<std::string> xmlLines = child->XML_lines();
+                vec.insert(std::end(vec), std::begin(xmlLines), std::end(xmlLines));
+            } // loop
+
+            xml.append("</");
+            xml.append(tag);
+            xml.append(">");
+            xml.append("\n");
+            vec.push_back(xml);
+
+        } // if
+        return vec;
     } // method
 
 } // namespace

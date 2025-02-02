@@ -35,27 +35,37 @@ int main(int arc, char **argv)
   PaxMap<std::string> map; // generally used hashmap ..
   map.dbg();               // debugging the pax map ..
 
-  Pax* pax1 = new Pax();
+  Pax *pax1 = new Pax();
   pax1->Tag("Bob");
   pax1->Val("Dylon");
   std::cout << pax1->Tag() << " => " << pax1->Val() << std::endl
             << std::flush;
 
-  Pax* pax2 = new Pax();
+  Pax *pax2 = new Pax();
   pax2->Tag("Dolly");
   pax2->Val("Parton");
 
   pax1->Child()->add(pax2);
 
-  Pax* pax3 = new Pax();
+  Pax *pax3 = new Pax();
   pax3->Tag("Johnny");
   pax3->Val("Cash");
 
   pax2->Child()->add(pax3);
 
-  std::string val2 = pax1->Child()->get("Dolly")->Val();
-  Pax* pax3_ = pax2->Child()->get("Johnny");
-  std::string val3 = pax1->Child()->get("Dolly")->Child()->get("Johnny")->Val();
+  std::string val2_ = pax1->Child()->get("Dolly")->Val();
+  Pax *pax3_ = pax2->Child()->get("Johnny");
+  std::string val3_ = pax1->Child()->get("Dolly")->Child()->get("Johnny")->Val();
+
+  Pax *pax3__ = pax2->Child("Johnny");
+  std::string val3__ = pax1->Child("Dolly")->Child("Johnny")->Val();
+
+  std::vector<std::string> xmlLines = pax1->XML_lines();
+  for(size_t l = 0; l < xmlLines.size(); l++) {
+    std::cout << xmlLines[l] << std::flush;
+  } // loop
+
+  delete pax1; // working recursively well on first run ..
 
   return 0;
 } // main

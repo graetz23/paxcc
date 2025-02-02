@@ -24,6 +24,9 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef __Children_h__
+#define __Children_h__
+
 #include "./SubSet.h"
 
 namespace PAXCC
@@ -40,3 +43,5 @@ namespace PAXCC
     }; // class
 
 } // namespace
+
+#endif // __Children_h__

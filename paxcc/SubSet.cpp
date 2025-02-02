@@ -24,6 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include <memory>
 #include "./Pax.h"
 #include "./SubSet.h"
 
@@ -31,42 +32,65 @@ namespace PAXCC
 {
     SubSet::SubSet()
     {
+        _map = new PaxMap<Pax *>();
     } // constructor
 
     SubSet::~SubSet()
-    {
-        std::vector<Pax*> vec = _map.vals();
-        for(size_t p = 0; p < vec.size(); p++) {
-            Pax* pax = vec[p];
+    { // deleting outside tree leads to no object here, thou we are doomed ..
+        std::vector<Pax *> vec = _map->vals();
+        for (size_t p = 0; p < vec.size(); p++)
+        { // delete recursively all pax ..
+            Pax *pax = vec[p];
             delete pax;
         } // loop
+        delete _map;
+        _map = nullptr;
     } // destructor
 
     bool
     SubSet::has(std::string tag)
     {
-        return _map.has(tag);
+        return _map->has(tag);
     } // method
 
     bool
-    SubSet::add(Pax* pax)
+    SubSet::add(Pax *pax)
     {
         std::string tag = pax->Tag();
         if (has(tag))
         {
             // TODO gen helping hand on tag value, due to been occupied ..
         } // if
-        bool wasAdded = _map.add(tag, pax);
+        bool wasAdded = _map->add(tag, pax);
         return wasAdded;
     } // method
 
-    Pax*
+    bool SubSet::add(std::string tag)
+    {
+        bool wasAdded = false;
+        Pax* pax = new Pax();
+        pax->Tag(tag);
+        wasAdded = add(pax);
+        return wasAdded;
+    } // method
+
+    bool SubSet::add(std::string tag, std::string val)
+    {
+        bool wasAdded = false;
+        Pax* pax = new Pax();
+        pax->Tag(tag);
+        pax->Tag(val);
+        wasAdded = add(pax);
+        return wasAdded;
+    } // method
+
+    Pax *
     SubSet::get(std::string tag)
     {
-        Pax* pax;
+        Pax *pax;
         if (has(tag))
         {
-            pax = _map.get(tag);
+            pax = _map->get(tag);
         }
         else
         {
@@ -78,28 +102,28 @@ namespace PAXCC
     bool
     SubSet::del(std::string tag)
     {
-        bool wasDeleted = _map.del(tag);
+        bool wasDeleted = _map->del(tag);
         return wasDeleted;
     } // method
 
     size_t
     SubSet::cnt(void)
     {
-        size_t cnt = _map.cnt();
+        size_t cnt = _map->cnt();
         return cnt;
     } // method
 
     std::vector<std::string>
     SubSet::tags()
     {
-        std::vector<std::string> vec = _map.keys();
+        std::vector<std::string> vec = _map->keys();
         return vec;
     } // method
 
-    std::vector<Pax*>
+    std::vector<Pax *>
     SubSet::vals()
     {
-        std::vector<Pax*> vec = _map.vals();
+        std::vector<Pax *> vec = _map->vals();
         return vec;
     } // method
 

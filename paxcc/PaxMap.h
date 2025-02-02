@@ -198,9 +198,9 @@ namespace PAXCC
             pax.add(key, val);
         } // loop
 
-        bool isStored = pax.has("42");
+        pax.has("42");
 
-        bool wasDeleted = pax.del("23");
+        pax.del("23");
 
         std::vector<std::string> keys = pax.keys();
         std::vector<V> vals = pax.vals();

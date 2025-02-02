@@ -24,10 +24,12 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include "./Pax.h"
 #include "./Children.h"
 
 namespace PAXCC
 {
+    class Pax; // we link em up ..
 
     Children::Children()
     {
