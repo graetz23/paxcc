@@ -38,15 +38,15 @@ int main( int arc, char** argv ) {
     std::string key = std::to_string(i+1);
     // const char* cKey = (const char*)key.c_str(); 
     pax.put(key, key);
-  } // loop
+  } // loopsecond
 
   std::vector<std::string>::iterator it = pax.start();
 
   for (pax.start(); it != pax.end(); it++)
   {
       std::cout << *it    // string (key)
-                << ':'
-                // << pax.get(it)   // string's value 
+                << ' => '
+                // << pax.get(*it)   // string's value 
                 << std::endl;
   }
 
