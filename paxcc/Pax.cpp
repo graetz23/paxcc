@@ -61,4 +61,15 @@ namespace PAXCC
         _val = val;
     } // method
 
+    bool
+    Pax::isValid(void)
+    {
+        bool isValid = true;
+        std::string na = "___na___";
+        if(Tag() == na && Val() == na) {
+            isValid = false;
+        } // if
+        return isValid;
+    } // method
+
 } // namespace

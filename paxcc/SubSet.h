@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -24,3 +24,43 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef __SubSet_h__
+#define __SubSet_h__
+
+#include "./PaxMap.h"
+
+class Pax; // link it up ..
+
+namespace PAXCC
+{
+    namespace PAX
+    {
+
+        class SubSet
+        {
+
+        private:
+            PaxMap<Pax> _map; // member
+
+        protected:
+        public:
+            SubSet(void);          // constructor
+            virtual ~SubSet(void); // destructor
+
+            bool has(std::string tag); // method
+
+            bool add(Pax pax);         // method
+            Pax get(std::string tag);  // method
+            bool del(std::string tag); // method
+
+            size_t cnt(void);                // method
+            std::vector<std::string> tags(); // method
+            std::vector<Pax> vals();         // method
+
+        }; // class
+
+    } // namespace
+
+} // namespace
+
+#endif // __SubSet_h__

@@ -24,6 +24,9 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef __PaxMap_h__
+#define __PaxMap_h__
+
 #include <map>
 #include <unordered_map>
 #include <vector>
@@ -171,7 +174,7 @@ namespace PAXCC
                 std::string key = _seq[k];
                 if (has(key))
                 { // however, not necessarily ..
-                    std::string val = _map[key];
+                    V val = _map[key];
                     vec.push_back(val);
                 } // if
             } // loop
@@ -214,3 +217,5 @@ namespace PAXCC
     } // method
 
 } // namespace
+
+#endif // __PaxMap_h__

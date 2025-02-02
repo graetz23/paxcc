@@ -24,6 +24,9 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef __Pax_h__
+#define __Pax_h__
+
 #include "./PaxMap.h" // insertation sequence ordered hash map ..
 
 namespace PAXCC
@@ -48,6 +51,10 @@ namespace PAXCC
         std::string Val(void);     // method
         void Val(std::string val); // method
 
+        bool isValid(void); // method
+
     }; // class
 
 } // namespace
+
+#endif // __Pax_h__

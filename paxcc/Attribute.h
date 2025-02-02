@@ -24,3 +24,24 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include "./SubSet.h"
+
+namespace PAXCC
+{
+    namespace PAX
+    {
+
+        class Attributes : SubSet
+        {
+
+        private:
+        protected:
+        public:
+            Attributes(void);          // constructor
+            virtual ~Attributes(void); // destructor
+
+        }; // class
+
+    } // namespace
+
+} // namespace
