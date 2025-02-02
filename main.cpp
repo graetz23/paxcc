@@ -63,13 +63,8 @@ int main(int arc, char **argv)
   pax3__->Attrib()->add("sings", "country songs");
   std::string val3__ = pax1->Child("Dolly")->Child("Johnny")->Val();
 
-  // std::vector<std::string> xmlLines = pax1->XML_lines();
-  // for(size_t l = 0; l < xmlLines.size(); l++) {
-  //   std::cout << xmlLines[l] << std::flush;
-  // } // loop
-
-  std::string xml = pax1->XML();
-  std::cout << xml << std::flush;
+  std::string xml = pax1->XML(); // generate XML from object tree ..
+  std::cout << xml << std::flush; // print out
 
   delete pax1; // working recursively well on first run ..
 

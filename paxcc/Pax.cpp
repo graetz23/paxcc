@@ -190,9 +190,17 @@ namespace PAXCC
     } // method
 
     std::vector<std::string>
-    Pax::XML_lines(void)
+    Pax::XML_lines(uint indent)
     {
         std::vector<std::string> vec;
+        std::string whitespaces = "";
+        if (indent > 0)
+        {
+            for (uint w = 0; w < indent; w++)
+            {
+                whitespaces.append(" ");
+            } // loop
+        } // if
         if (!hasChild())
         {
             if (!hasAttrib())
@@ -200,16 +208,17 @@ namespace PAXCC
                 if (!hasVal())
                 { // standalone tag
                     std::string xml;
+                    xml.append(whitespaces);
                     std::string tag = Tag();
                     xml.append("<");
                     xml.append(tag);
                     xml.append(" />");
-                    // xml.append("\n");
                     vec.push_back(xml);
                 }
                 else
                 { // tag value
                     std::string xml;
+                    xml.append(whitespaces);
                     std::string tag = Tag();
                     std::string val = Val();
                     xml.append("<");
@@ -219,7 +228,6 @@ namespace PAXCC
                     xml.append("</");
                     xml.append(tag);
                     xml.append(">");
-                    // xml.append("\n");
                     vec.push_back(xml);
                 } // if
             }
@@ -228,6 +236,7 @@ namespace PAXCC
                 if (!hasVal())
                 { // standalone tag attributes
                     std::string xml;
+                    xml.append(whitespaces);
                     std::string tag = Tag();
                     std::string attribs = Attrib()->XML();
                     xml.append("<");
@@ -235,12 +244,12 @@ namespace PAXCC
                     xml.append(" ");
                     xml.append(attribs);
                     xml.append(" />");
-                    // xml.append("\n");
                     vec.push_back(xml);
                 }
                 else
                 { // tag attributes value
                     std::string xml;
+                    xml.append(whitespaces);
                     std::string tag = Tag();
                     std::string val = Val();
                     std::string attribs = Attrib()->XML();
@@ -253,7 +262,6 @@ namespace PAXCC
                     xml.append("</");
                     xml.append(tag);
                     xml.append(">");
-                    // xml.append("\n");
                     vec.push_back(xml);
                 } // if
             } // if
@@ -264,40 +272,43 @@ namespace PAXCC
             if (!hasAttrib())
             { // no attributes
                 std::string xml_;
+                xml_.append(whitespaces);
                 xml_.append("<");
                 xml_.append(tag);
                 xml_.append(">");
-                // xml_.append("\n");
                 vec.push_back(xml_);
             }
             else
             { // add attributes
                 std::string xml_;
+                xml_.append(whitespaces);
                 std::string attribs = Attrib()->XML();
                 xml_.append("<");
                 xml_.append(tag);
                 xml_.append(" ");
                 xml_.append(attribs);
                 xml_.append(">");
-                // xml_.append("\n");
                 vec.push_back(xml_);
 
             } // if
 
             std::string xml;
+            xml.append(whitespaces);
+
             size_t cnt = cntChilds();
             std::vector<Pax *> paxs = Childs();
+            indent += 2;
             for (size_t p = 0; p < cnt; p++)
             { // here we go recursive ..
                 Pax *child = paxs[p];
-                std::vector<std::string> xmlLines = child->XML_lines();
+                std::vector<std::string> xmlLines = child->XML_lines(indent);
                 vec.insert(std::end(vec), std::begin(xmlLines), std::end(xmlLines));
             } // loop
+            indent -= 2;
 
             xml.append("</");
             xml.append(tag);
             xml.append(">");
-            // xml.append("\n");
             vec.push_back(xml);
 
         } // if
