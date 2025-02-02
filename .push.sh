@@ -6,7 +6,7 @@
 # Created 250202
 # Changed 250202
 #
-SRCDIR=./paxxcc
+SRCDIR=./paxcc
 git add main.cpp
 git add $SRCDIR/*.cpp
 git add $SRCDIR/*.h
