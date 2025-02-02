@@ -24,4 +24,4 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./pax.h"
+#include "./Pax.h"

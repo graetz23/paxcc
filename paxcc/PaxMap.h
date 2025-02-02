@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -24,13 +24,44 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include <map>
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
+#include <iostream>
 
-#include "./paxMap.h"
+namespace PAXCC
+{
 
-class Pax {
+    /**
+     * @brief Template based class representing an easy to handle
+     * hash map that is ordered by the sequence of inserting.
+     *
+     */
+    class PaxMap
+    {
 
-private:
+    private:
+        std::vector<std::string> _seq;                     // member
+        std::unordered_map<std::string, std::string> _map; // member
+        std::vector<std::string>::iterator _it;            // member
 
-public:
+    public:
+        PaxMap(void);          // constructor
+        virtual ~PaxMap(void); // destructor
 
-}; // class
+        bool has(std::string key);                    // method
+        bool add(std::string key, std::string value); // method
+        std::string get(std::string key);             // method
+        bool del(std::string key);                    // method
+        std::size_t cnt(void);                                // method
+        std::vector<std::string> vec(void);          // method
+
+        // protected:
+
+        std::vector<std::string>::iterator start(); // method
+        std::vector<std::string>::iterator end();   // method
+
+    }; // class
+
+} // namespace

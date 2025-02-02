@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./paxMap.h"
+#include "./PaxMap.h"
 
 namespace PAXCC
 {
@@ -37,10 +37,12 @@ namespace PAXCC
     {
     } // destructor
 
-    bool 
-    PaxMap::has(std::string key) {
+    bool
+    PaxMap::has(std::string key)
+    {
         bool isStored = false;
-        if(_map.count( key ) > 0 ) {
+        if (_map.count(key) > 0)
+        {
             isStored = true;
         } // if
         return isStored;
@@ -50,7 +52,8 @@ namespace PAXCC
     PaxMap::add(std::string key, std::string value)
     {
         bool wasStored = false;
-        if(!has(key)) {
+        if (!has(key))
+        {
             _seq.push_back(key);
             _map[key] = value;
         } // if
@@ -63,18 +66,45 @@ namespace PAXCC
         return _map[key];
     } // method
 
-    bool 
-    PaxMap::del(std::string key) {
+    bool
+    PaxMap::del(std::string key)
+    {
         bool wasDeleted = false;
-        if(has( key )) {
+        if (has(key))
+        { // take from map and sequence ..
             _map.erase(key);
-            int index = &key - _seq.data();
-           // _seq.erase(std::remove(_seq.begin(), _seq.end(), &key), _seq.end());
+            _seq.erase(std::remove(_seq.begin(), _seq.end(), key), _seq.end());
             wasDeleted = true;
         } // if
         return wasDeleted;
     } // method
 
+    std::size_t
+    PaxMap::cnt(void)
+    {
+        std::size_t count = 0;
+        count = _seq.size();
+        return count;
+    } // method
+
+    std::vector<std::string>
+    PaxMap::vec()
+    {
+        std::vector<std::string> vec;
+        if (cnt() > 0)
+        {
+            for (size_t k = 0; k < cnt(); k++)
+            {
+                std::string key = _seq[k];
+                if (has(key))
+                {
+                    std::string val = _map[key];
+                    vec.push_back(val);
+                } // if
+            } // loop
+        } // if
+        return vec;
+    } // method
 
     std::vector<std::string>::iterator
     PaxMap::start()
@@ -83,7 +113,7 @@ namespace PAXCC
         return _it;
     } // method
 
-    std::vector<std::string>::iterator 
+    std::vector<std::string>::iterator
     PaxMap::end()
     {
         std::vector<std::string>::iterator it;

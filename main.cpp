@@ -43,14 +43,12 @@ int main( int arc, char** argv ) {
 
   bool wasDeleted = pax.del("23");
 
-  std::vector<std::string>::iterator it = pax.start();
-  for (pax.start(); it != pax.end(); it++)
-  {
-      std::cout << *it    // string (key)
-                << ' => '
-                // << pax.get(*it)   // string's value 
-                << std::endl;
+  std::vector<std::string> vec =pax.vec();
+  for(std::size_t k = 0; k < vec.size(); k++) {
+    std::string val = vec[k];
+    std::cout << "val: " << val << std::endl << std::flush;
   } // loop
+
 
   return 0;
 } // main
