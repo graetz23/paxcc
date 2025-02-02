@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -26,16 +26,43 @@
 
 #include "./paxMap.h"
 
-namespace PAXCC {
+namespace PAXCC
+{
 
-void 
-PaxMap::put(const void* key, const void* value) {
-    _hashmap[key] = value;
-} // method
+    PaxMap::PaxMap(void)
+    {
+    } // constructor
 
-const void*
-PaxMap::get(const void* key) {
-    return _hashmap[key];
-} // method
+    PaxMap::~PaxMap(void)
+    {
+    } // destructor
+
+    void
+    PaxMap::put(std::string key, std::string value)
+    {
+        _seq.push_back(key);
+        _map[key] = value;
+    } // method
+
+    std::string
+    PaxMap::get(std::string key)
+    {
+        return _map[key];
+    } // method
+
+    std::vector<std::string>::iterator
+    PaxMap::start()
+    {
+        _it = _seq.begin();
+        return _it;
+    } // method
+
+    std::vector<std::string>::iterator 
+    PaxMap::end()
+    {
+        std::vector<std::string>::iterator it;
+        it = _seq.end();
+        return it;
+    } // method
 
 } // namespace

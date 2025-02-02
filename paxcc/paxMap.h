@@ -27,31 +27,30 @@
 
 #include <map>
 #include <unordered_map>
+#include <vector>
+#include <iostream>
 
 namespace PAXCC {
 
 class PaxMap {
 
 private:
-    std::map<const void*, const void*> _hashmap; // member
+    std::vector<std::string> _seq; // member
+    std::map<std::string, std::string> _map; // member
+    std::vector<std::string>::iterator _it; // member
 
 public:
-    void put(const void *key, const void *value); // method
 
-    const void *get(const void *key); // method
+    PaxMap( void ); // constructor
+    virtual ~PaxMap( void ); // destructor
 
-     std::map<const void*, const void*>::iterator start() {
-        std::map<const void*, const void*>::iterator it;
-        it = _hashmap.begin();
-        return it;
-     } // method
+    void put(std::string key, std::string value); // method
 
-    std::map<const void*, const void*>::iterator end() {
-        std::map<const void*, const void*>::iterator it;
-        it = _hashmap.end();
-        return it;
-     } // method
+    std::string get(std::string key); // method
 
+    std::vector<std::string>::iterator start(); // method
+
+    std::vector<std::string>::iterator end(); // method
 
 }; // class
 
