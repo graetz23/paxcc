@@ -13,5 +13,6 @@ any kind of -- hierarchically -- structured data to PAX; e.g. using XMLs SAX int
          Adding _PaxMap_ a sequence ordered hash map as template implementation.
          Adding _Pax_ keeping _Children_ and _Attributes_ that have _Pax_ types
          again, representing a complex _Composite Pattern_ from the _Software
-         Design Patterns_ philosophy.
+         Design Patterns_ philosophy. Adding recursive generation of XML for
+         Pax build object trees.
 - 250201 Created the paxcc project and added make.
