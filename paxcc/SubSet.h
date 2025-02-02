@@ -57,8 +57,6 @@ namespace PAXCC
         std::vector<std::string> tags(); // method
         std::vector<Pax *> vals();       // method
 
-        virtual std::vector<std::string> XML() = 0; // method
-
     }; // class
 
 } // namespace

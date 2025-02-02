@@ -60,6 +60,11 @@ int main(int arc, char **argv)
   Pax *pax3__ = pax2->Child("Johnny");
   std::string val3__ = pax1->Child("Dolly")->Child("Johnny")->Val();
 
+  std::vector<std::string> xmlLines = pax1->XML_lines();
+  for(size_t l = 0; l < xmlLines.size(); l++) {
+    std::cout << xmlLines[l] << std::flush;
+  } // loop
+
   delete pax1; // working recursively well on first run ..
 
   return 0;

@@ -24,10 +24,12 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include "./Pax.h"
 #include "./Children.h"
 
 namespace PAXCC
 {
+    class Pax; // we link em up ..
 
     Children::Children()
     {
@@ -36,12 +38,5 @@ namespace PAXCC
     Children::~Children()
     {
     } // destructor
-
-    std::vector<std::string>
-    Children::XML()
-    {
-        std::vector<std::string> vec;
-        return vec;
-    } // method
 
 } // namespace

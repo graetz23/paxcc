@@ -24,6 +24,9 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef __Attributes_h__
+#define __Attributes_h__
+
 #include "./SubSet.h"
 
 namespace PAXCC
@@ -37,8 +40,10 @@ namespace PAXCC
         Attributes(void);          // constructor
         virtual ~Attributes(void); // destructor
 
-        std::vector<std::string> XML(); // method
-    
+        std::string XML(); // method
+
     }; // class
 
 } // namespace
+
+#endif // __Attributes_h__

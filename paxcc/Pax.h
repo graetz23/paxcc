@@ -53,9 +53,11 @@ namespace PAXCC
 
         std::string Tag(void);     // method
         void Tag(std::string tag); // method
+        bool hasTag(void);         // method
 
         std::string Val(void);     // method
         void Val(std::string val); // method
+        bool hasVal(void);         // method
 
         Attributes *Attrib(void);     // method
         Pax *Attrib(std::string tag); // method
@@ -64,8 +66,11 @@ namespace PAXCC
         Children *Child(void);       // method
         Pax *Child(std::string tag); // method
         bool hasChild();             // method
+        size_t cntChilds(); // method
+        std::vector<Pax *> Childs(); // method
 
-        std::vector<std::string> *XML(void); // method
+        std::string XML(void); // method
+        std::vector<std::string> XML_lines(void); // method
 
     }; // class
 
