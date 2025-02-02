@@ -44,6 +44,7 @@ int main(int arc, char **argv)
   Pax *pax2 = new Pax();
   pax2->Tag("Dolly");
   pax2->Val("Parton");
+  pax2->Attrib()->add("sings", "country songs");
 
   pax1->Child()->add(pax2);
 
@@ -58,12 +59,17 @@ int main(int arc, char **argv)
   std::string val3_ = pax1->Child()->get("Dolly")->Child()->get("Johnny")->Val();
 
   Pax *pax3__ = pax2->Child("Johnny");
+  pax3__->Attrib()->add("plays", "guitar");
+  pax3__->Attrib()->add("sings", "country songs");
   std::string val3__ = pax1->Child("Dolly")->Child("Johnny")->Val();
 
-  std::vector<std::string> xmlLines = pax1->XML_lines();
-  for(size_t l = 0; l < xmlLines.size(); l++) {
-    std::cout << xmlLines[l] << std::flush;
-  } // loop
+  // std::vector<std::string> xmlLines = pax1->XML_lines();
+  // for(size_t l = 0; l < xmlLines.size(); l++) {
+  //   std::cout << xmlLines[l] << std::flush;
+  // } // loop
+
+  std::string xml = pax1->XML();
+  std::cout << xml << std::flush;
 
   delete pax1; // working recursively well on first run ..
 

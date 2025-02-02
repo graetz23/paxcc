@@ -177,6 +177,18 @@ namespace PAXCC
         return vec;
     } // method
 
+    std::string Pax::XML(void)
+    {
+        std::string xml;
+        std::vector<std::string> lines = XML_lines();
+        for (size_t l = 0; l < lines.size(); l++)
+        {
+            xml.append(lines[l]);
+            xml.append("\n");
+        } // loop
+        return xml;
+    } // method
+
     std::vector<std::string>
     Pax::XML_lines(void)
     {
@@ -192,7 +204,7 @@ namespace PAXCC
                     xml.append("<");
                     xml.append(tag);
                     xml.append(" />");
-                    xml.append("\n");
+                    // xml.append("\n");
                     vec.push_back(xml);
                 }
                 else
@@ -207,7 +219,7 @@ namespace PAXCC
                     xml.append("</");
                     xml.append(tag);
                     xml.append(">");
-                    xml.append("\n");
+                    // xml.append("\n");
                     vec.push_back(xml);
                 } // if
             }
@@ -223,7 +235,7 @@ namespace PAXCC
                     xml.append(" ");
                     xml.append(attribs);
                     xml.append(" />");
-                    xml.append("\n");
+                    // xml.append("\n");
                     vec.push_back(xml);
                 }
                 else
@@ -241,7 +253,7 @@ namespace PAXCC
                     xml.append("</");
                     xml.append(tag);
                     xml.append(">");
-                    xml.append("\n");
+                    // xml.append("\n");
                     vec.push_back(xml);
                 } // if
             } // if
@@ -255,7 +267,7 @@ namespace PAXCC
                 xml_.append("<");
                 xml_.append(tag);
                 xml_.append(">");
-                xml_.append("\n");
+                // xml_.append("\n");
                 vec.push_back(xml_);
             }
             else
@@ -267,7 +279,7 @@ namespace PAXCC
                 xml_.append(" ");
                 xml_.append(attribs);
                 xml_.append(">");
-                xml_.append("\n");
+                // xml_.append("\n");
                 vec.push_back(xml_);
 
             } // if
@@ -285,7 +297,7 @@ namespace PAXCC
             xml.append("</");
             xml.append(tag);
             xml.append(">");
-            xml.append("\n");
+            // xml.append("\n");
             vec.push_back(xml);
 
         } // if

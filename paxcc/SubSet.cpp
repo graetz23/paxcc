@@ -79,7 +79,7 @@ namespace PAXCC
         bool wasAdded = false;
         Pax* pax = new Pax();
         pax->Tag(tag);
-        pax->Tag(val);
+        pax->Val(val);
         wasAdded = add(pax);
         return wasAdded;
     } // method

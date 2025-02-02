@@ -49,7 +49,6 @@ namespace PAXCC
             std::vector<Pax *> paxs = this->vals();
             for (size_t p = 0; p < cnt; p++)
             {
-                std::string xml;
                 Pax *pax = paxs[p];
                 std::string tag = pax->Tag();
                 xml.append(tag);
