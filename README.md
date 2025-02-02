@@ -16,7 +16,8 @@ A _Pax_ objects can take:
     - may generate themselves to _extensible markup language (XML)_.
 
 Therefore, the _Pax_ objects allow for building multi-dimensional object trees
-that are infinitively deep.
+that are infinitively deep. Any _Pax_ can reproduce itself recusively to XML,
+JSON (to follow), and protobuf (to follow).
 
 ## HowTo
 
@@ -198,7 +199,7 @@ The following example details this issue:
 
     // and 
 
-    Pax* pax3__ pax2->Child("John"); // null pointer
+    Pax* pax3__ = pax2->Child("John"); // null pointer
 
     delete root; // runs recursively ..
 ```
