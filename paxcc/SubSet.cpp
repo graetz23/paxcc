@@ -24,12 +24,25 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include <memory>
+#include <sstream>
 #include "./Pax.h"
 #include "./SubSet.h"
 
 namespace PAXCC
 {
+
+    // it's all about the statics ..
+    unsigned long long static _cnt = 0;
+    std::string getNext()
+    {
+        std::string next;
+        _cnt++;
+        std::stringstream strstream;
+        strstream << _cnt;
+        strstream >> next;
+        return next;
+    } // method
+
     SubSet::SubSet()
     {
         _map = new PaxMap<Pax *>();
@@ -59,7 +72,9 @@ namespace PAXCC
         std::string tag = pax->Tag();
         if (has(tag))
         {
-            // TODO gen helping hand on tag value, due to been occupied ..
+            std::string next = getNext();
+            tag.append(" ");
+            tag.append(next);
         } // if
         bool wasAdded = _map->add(tag, pax);
         return wasAdded;
@@ -68,7 +83,7 @@ namespace PAXCC
     bool SubSet::add(std::string tag)
     {
         bool wasAdded = false;
-        Pax* pax = new Pax();
+        Pax *pax = new Pax();
         pax->Tag(tag);
         wasAdded = add(pax);
         return wasAdded;
@@ -77,7 +92,7 @@ namespace PAXCC
     bool SubSet::add(std::string tag, std::string val)
     {
         bool wasAdded = false;
-        Pax* pax = new Pax();
+        Pax *pax = new Pax();
         pax->Tag(tag);
         pax->Val(val);
         wasAdded = add(pax);

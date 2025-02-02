@@ -45,8 +45,14 @@ int main(int arc, char **argv)
   pax2->Tag("Dolly");
   pax2->Val("Parton");
   pax2->Attrib()->add("sings", "country songs");
-
   pax1->Child()->add(pax2);
+
+  Pax *pax2_ = new Pax();
+  pax2_->Tag("Dolly");
+  pax2_->Val("Parton");
+  pax2_->Attrib()->add("sings", "country songs");
+  pax1->Child()->add(pax2_);
+
 
   Pax *pax3 = new Pax();
   pax3->Tag("Johnny");
@@ -63,7 +69,7 @@ int main(int arc, char **argv)
   pax3__->Attrib()->add("sings", "country songs");
   std::string val3__ = pax1->Child("Dolly")->Child("Johnny")->Val();
 
-  std::string xml = pax1->XML(); // generate XML from object tree ..
+  std::string xml = pax1->XML();  // generate XML from object tree ..
   std::cout << xml << std::flush; // print out
 
   delete pax1; // working recursively well on first run ..
