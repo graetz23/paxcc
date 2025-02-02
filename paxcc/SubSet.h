@@ -33,33 +33,28 @@ namespace PAXCC
 {
     class Pax; // link it up ..
 
-    namespace PAX
+    class SubSet
     {
 
-        class SubSet
-        {
+    private:
+        PaxMap<Pax> _map; // member
 
-        private:
-            PaxMap<Pax> _map; // member
+    protected:
+    public:
+        SubSet(void);          // constructor
+        virtual ~SubSet(void); // destructor
 
-        protected:
-        public:
-            SubSet(void);          // constructor
-            virtual ~SubSet(void); // destructor
+        bool has(std::string tag); // method
 
-            bool has(std::string tag); // method
+        bool add(Pax pax);         // method
+        Pax get(std::string tag);  // method
+        bool del(std::string tag); // method
 
-            bool add(Pax pax);         // method
-            Pax get(std::string tag);  // method
-            bool del(std::string tag); // method
+        size_t cnt(void);                // method
+        std::vector<std::string> tags(); // method
+        std::vector<Pax> vals();         // method
 
-            size_t cnt(void);                // method
-            std::vector<std::string> tags(); // method
-            std::vector<Pax> vals();         // method
-
-        }; // class
-
-    } // namespace
+    }; // class
 
 } // namespace
 

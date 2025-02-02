@@ -40,8 +40,8 @@ namespace PAXCC
         std::string _tag; // member
         std::string _val; // member
         
-        PAX::Children _children; // member
-        PAX::Attributes _attributes; // member
+        Children _children; // member
+        Attributes _attributes; // member
 
     protected:
     public:
@@ -56,8 +56,8 @@ namespace PAXCC
 
         bool isValid(void); // method
 
-        PAX::Attributes Attrib(void); // method
-        PAX::Children Child(void); // method
+        Attributes Attrib(void); // method
+        Children Child(void); // method
 
     }; // class
 

@@ -29,16 +29,12 @@
 namespace PAXCC
 {
 
-    namespace PAX
+    Children::Children()
     {
+    } // constructor
 
-        Children::Children()
-        {
-        } // constructor
+    Children::~Children()
+    {
+    } // destructor
 
-        Children::~Children()
-        {
-        } // destructor
-
-    } // namespace
 } // namespace

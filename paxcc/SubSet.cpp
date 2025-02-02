@@ -29,76 +29,75 @@
 
 namespace PAXCC
 {
-
-    namespace PAX
+    SubSet::SubSet()
     {
+    } // constructor
 
-        SubSet::SubSet()
+    SubSet::~SubSet()
+    {
+    } // destructor
+
+    bool
+    SubSet::has(std::string tag)
+    {
+        return _map.has(tag);
+    } // method
+
+    bool
+    SubSet::add(Pax pax)
+    {
+        std::string tag = pax.Tag();
+        if (has(tag))
         {
-        } // constructor
+            // TODO gen helping hand on tag value, due to been occupied ..
+        } // if
+        bool wasAdded = _map.add(tag, pax);
+        return wasAdded;
+    } // method
 
-        SubSet::~SubSet()
+    Pax
+    SubSet::get(std::string tag)
+    {
+        Pax pax;
+        if (has(tag))
         {
-        } // destructor
-
-        bool
-        SubSet::has(std::string tag)
+            pax = _map.get(tag);
+        }
+        else
         {
-            return _map.has(tag);
-        } // method
+            std::string na = "___na___";
+            pax.Tag(na);
+            pax.Val(na);
+        } // if
+        return pax;
+    } // method
 
-        bool
-        SubSet::add(Pax pax)
-        {
-            std::string tag = pax.Tag();
-            if (has(tag))
-            {
-                // TODO gen helping hand on tag value, due to been occupied ..
-            } // if
-            bool wasAdded = _map.add(tag, pax);
-            return wasAdded;
-        } // method
+    bool
+    SubSet::del(std::string tag)
+    {
+        bool wasDeleted = _map.del(tag);
+        return wasDeleted;
+    } // method
 
-        Pax
-        SubSet::get(std::string tag)
-        {
-            Pax pax;
-            if (has(tag))
-            {
-                pax = _map.get(tag);
-            }
-            else
-            {
-                std::string na = "___na___";
-                pax.Tag(na);
-                pax.Val(na);
-            } // if
-            return pax;
-        } // method
+    size_t
+    SubSet::cnt(void)
+    {
+        size_t cnt = _map.cnt();
+        return cnt;
+    } // method
 
-        bool
-        SubSet::del(std::string tag) {
-            bool wasDeleted = _map.del(tag);
-            return wasDeleted;
-        } // method
+    std::vector<std::string>
+    SubSet::tags()
+    {
+        std::vector<std::string> vec = _map.keys();
+        return vec;
+    } // method
 
-        size_t
-        SubSet::cnt(void) {
-            size_t cnt = _map.cnt();
-            return cnt;
-        } // method
+    std::vector<Pax>
+    SubSet::vals()
+    {
+        std::vector<Pax> vec = _map.vals();
+        return vec;
+    } // method
 
-        std::vector<std::string>
-        SubSet::tags() {
-            std::vector<std::string> vec = _map.keys();
-            return vec;
-        } // method
-
-        std::vector<Pax>
-        SubSet::vals() {
-            std::vector<Pax> vec = _map.vals();
-            return vec;
-        } // method
-
-    } // namespace
 } // namespace

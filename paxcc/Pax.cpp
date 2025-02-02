@@ -73,17 +73,16 @@ namespace PAXCC
         return isValid;
     } // method
 
-    PAX::Attributes
+    Attributes
     Pax::Attrib(void)
     {
-        PAX::Attributes attributes = _attributes;
-        return attributes;
+        return _attributes;
     } // method
 
-    PAX::Children 
-    Pax::Child(void){
-        PAX::Children children = _children;
-        return children;
+    Children
+    Pax::Child(void)
+    {
+        return _children;
     } // method
 
 } // namespace

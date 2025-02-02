@@ -33,12 +33,19 @@ int main(int arc, char **argv)
 {
 
   PaxMap<std::string> map; // generally used hashmap ..
-  map.dbg();  // debugging the pax map ..
+  map.dbg();               // debugging the pax map ..
 
-  Pax pax;
-  pax.Tag("Bob");
-  pax.Val("Dylon");
-  std::cout << pax.Tag() << " => " << pax.Val() << std::endl << std::flush;
+  Pax pax1;
+  pax1.Tag("Bob");
+  pax1.Val("Dylon");
+  std::cout << pax1.Tag() << " => " << pax1.Val() << std::endl
+            << std::flush;
+
+  Pax pax2;
+  pax2.Tag("Dolly");
+  pax2.Val("Parton");
+
+  pax1.Child().add(pax2);
 
   return 0;
 } // main
