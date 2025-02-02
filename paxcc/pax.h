@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * PAXCC - Parse Any XML using C++
+ * PAXCC - A pretty simple C++ Data Passenger
  *
  * Copyright (c) 2025 Christian (graetz23@gmail.com)
  *
@@ -24,3 +24,13 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+
+#include "./paxMap.h"
+
+class Pax {
+
+private:
+
+public:
+
+}; // class

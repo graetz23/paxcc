@@ -24,4 +24,22 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./pax.h"
+
+#include <map>
+#include <unordered_map>
+
+namespace PAXCC {
+
+class PaxMap {
+
+private:
+    std::map<const void *, const void *> _hashmap; // member
+
+public:
+    void put(const void *key, const void *value); // method
+
+        const void *get(const void *key); // method
+
+}; // class
+
+} // namespace

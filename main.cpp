@@ -24,9 +24,20 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include <iostream>
 #include "./paxcc/paxcc.h"
 
+using namespace PAXCC;
+
 int main( int arc, char** argv ) {
+
+    PaxMap pax;
+    pax.put("Bob", "Dylan");
+    int one = 1;
+    pax.put("one", &one);
+    std::cout << (char *)pax.get("Bob") << "; " 
+              << *(int *)pax.get("one")
+              << std::endl << std::flush;;
 
   return 0;
 } // main

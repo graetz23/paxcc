@@ -24,4 +24,18 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./pax.h"
+#include "./paxMap.h"
+
+namespace PAXCC {
+
+void 
+PaxMap::put(const void* key, const void* value) {
+    _hashmap[key] = value;
+} // method
+
+const void*
+PaxMap::get(const void* key) {
+    return _hashmap[key];
+} // method
+
+} // namespace
