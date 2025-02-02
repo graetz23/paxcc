@@ -24,4 +24,9 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef __paxcc_h__
+#define __paxcc_h__
+
 #include "./Pax.h"
+
+#endif // __paxcc_h__

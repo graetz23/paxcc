@@ -66,10 +66,24 @@ namespace PAXCC
     {
         bool isValid = true;
         std::string na = "___na___";
-        if(Tag() == na && Val() == na) {
+        if (Tag() == na && Val() == na)
+        {
             isValid = false;
         } // if
         return isValid;
+    } // method
+
+    PAX::Attributes
+    Pax::Attrib(void)
+    {
+        PAX::Attributes attributes = _attributes;
+        return attributes;
+    } // method
+
+    PAX::Children 
+    Pax::Child(void){
+        PAX::Children children = _children;
+        return children;
     } // method
 
 } // namespace

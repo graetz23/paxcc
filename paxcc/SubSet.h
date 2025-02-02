@@ -29,10 +29,10 @@
 
 #include "./PaxMap.h"
 
-class Pax; // link it up ..
-
 namespace PAXCC
 {
+    class Pax; // link it up ..
+
     namespace PAX
     {
 

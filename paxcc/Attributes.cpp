@@ -24,3 +24,21 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include "./Attributes.h"
+
+namespace PAXCC
+{
+
+    namespace PAX
+    {
+
+        Attributes::Attributes()
+        {
+        } // constructor
+
+        Attributes::~Attributes()
+        {
+        } // destructor
+
+    } // namespace
+} // namespace
