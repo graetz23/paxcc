@@ -31,13 +31,28 @@ using namespace PAXCC;
 
 int main( int arc, char** argv ) {
 
-    PaxMap pax;
-    pax.put("Bob", "Dylan");
-    int one = 1;
-    pax.put("one", &one);
-    std::cout << (char *)pax.get("Bob") << "; " 
-              << *(int *)pax.get("one")
-              << std::endl << std::flush;;
+  PaxMap pax;
+  pax.put("Bob", "Dylan");
+  int one = 0;
+  pax.put("one", &one);
+  std::cout << (char *)pax.get("Bob") << "; " 
+            << *(int *)pax.get("one")
+            << std::endl << std::flush;;
+
+  for(int i=0; i < 100; i++) {
+    std::string key = std::to_string(i+1);
+    pax.put(key.c_str(), key.c_str());
+  } // loop
+
+  std::map<const void*, const void*>::iterator it = pax.start();
+
+  for (pax.start(); it != pax.end(); it++)
+  {
+      std::cout << (char*)it->first    // string (key)
+                << ':'
+                << *(int*)it->second   // string's value 
+                << std::endl;
+  }
 
   return 0;
 } // main

@@ -33,12 +33,25 @@ namespace PAXCC {
 class PaxMap {
 
 private:
-    std::map<const void *, const void *> _hashmap; // member
+    std::map<const void*, const void*> _hashmap; // member
 
 public:
     void put(const void *key, const void *value); // method
 
-        const void *get(const void *key); // method
+    const void *get(const void *key); // method
+
+     std::map<const void*, const void*>::iterator start() {
+        std::map<const void*, const void*>::iterator it;
+        it = _hashmap.begin();
+        return it;
+     } // method
+
+    std::map<const void*, const void*>::iterator end() {
+        std::map<const void*, const void*>::iterator it;
+        it = _hashmap.end();
+        return it;
+     } // method
+
 
 }; // class
 
