@@ -35,5 +35,10 @@ int main(int arc, char **argv)
   PaxMap<std::string> map; // generally used hashmap ..
   map.dbg();  // debugging the pax map ..
 
+  Pax pax;
+  pax.Tag("Bob");
+  pax.Val("Dylon");
+  std::cout << pax.Tag() << " => " << pax.Val() << std::endl << std::flush;
+
   return 0;
 } // main

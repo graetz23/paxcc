@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -24,12 +24,30 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./PaxMap.h" // insertation sequence ordered hash map
+#include "./PaxMap.h" // insertation sequence ordered hash map ..
 
-class Pax {
+namespace PAXCC
+{
 
-private:
+    class Pax
+    {
 
-public:
+    private:
+        std::string _tag; // member
+        std::string _val; // member
+        PaxMap<Pax> _map; // member
 
-}; // class
+    protected:
+    public:
+        Pax(void);          // constructor
+        virtual ~Pax(void); // destructor
+
+        std::string Tag(void);     // method
+        void Tag(std::string tag); // method
+
+        std::string Val(void);     // method
+        void Val(std::string val); // method
+
+    }; // class
+
+} // namespace

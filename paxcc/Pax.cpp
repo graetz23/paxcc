@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -25,3 +25,40 @@
  */
 
 #include "./Pax.h"
+
+namespace PAXCC
+{
+
+    Pax::Pax(void)
+    {
+    } // constructor
+
+    Pax::~Pax(void)
+    {
+    } // destructor
+
+    std::string
+    Pax::Tag(void)
+    {
+        return _tag;
+    } // method
+
+    void
+    Pax::Tag(std::string tag)
+    {
+        _tag = tag;
+    } // method
+
+    std::string
+    Pax::Val(void)
+    {
+        return _val;
+    } // method
+
+    void
+    Pax::Val(std::string val)
+    {
+        _val = val;
+    } // method
+
+} // namespace
