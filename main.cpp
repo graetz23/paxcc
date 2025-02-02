@@ -32,7 +32,7 @@ using namespace PAXCC;
 int main(int arc, char **argv)
 {
 
-  PaxMap map; // generally used hashmap ..
+  PaxMap<std::string> map; // generally used hashmap ..
   map.dbg();  // debugging the pax map ..
 
   return 0;

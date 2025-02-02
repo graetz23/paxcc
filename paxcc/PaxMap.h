@@ -38,13 +38,12 @@ namespace PAXCC
      * hash map that is ordered by the sequence of inserting.
      *
      */
-    class PaxMap
+    template<class V> class PaxMap
     {
 
     private:
         std::vector<std::string> _seq;                     // member
-        std::unordered_map<std::string, std::string> _map; // member
-        std::vector<std::string>::iterator _it;            // member
+        std::unordered_map<std::string, V> _map; // member
 
     public:
         PaxMap(void);          // constructor
@@ -52,16 +51,143 @@ namespace PAXCC
 
         bool has(std::string key); // method
 
-        bool add(std::string key, std::string value); // method
+        bool add(std::string key, V val); // method
         std::string get(std::string key);             // method
         bool del(std::string key);                    // method
 
         std::size_t cnt(void);               // method
         std::vector<std::string> keys(void); // method
-        std::vector<std::string> vals(void); // method
+        std::vector<V> vals(void); // method
 
         void dbg(void); // method
 
     }; // class
+
+    template<class V>
+    PaxMap<V>::PaxMap(void)
+    {
+    } // constructor
+
+    template<class V>
+    PaxMap<V>::~PaxMap(void)
+    {
+    } // destructor
+
+    template<class V> bool
+    PaxMap<V>::has(std::string key)
+    {
+        bool isStored = false;
+        if (_map.count(key) > 0)
+        {
+            isStored = true;
+        } // if
+        return isStored;
+    } // method
+
+    template<class V> bool
+    PaxMap<V>::add(std::string key, V value)
+    {
+        bool wasStored = false;
+        if (!has(key))
+        {
+            _seq.push_back(key);
+            _map[key] = value;
+        } // if
+        return wasStored;
+    } // method
+
+    template<class V> std::string
+    PaxMap<V>::get(std::string key)
+    {
+        return _map[key];
+    } // method
+
+    template<class V> bool
+    PaxMap<V>::del(std::string key)
+    {
+        bool wasDeleted = false;
+        if (has(key))
+        { // take from map and sequence ..
+            _map.erase(key);
+            _seq.erase(std::remove(_seq.begin(), _seq.end(), key), _seq.end());
+            wasDeleted = true;
+        } // if
+        return wasDeleted;
+    } // method
+
+    template<class V> std::size_t
+    PaxMap<V>::cnt(void)
+    {
+        std::size_t count = 0;
+        count = _seq.size();
+        return count;
+    } // method
+
+    template<class V> std::vector<std::string>
+    PaxMap<V>::keys()
+    {
+        std::vector<std::string> vec;
+        if (cnt() > 0)
+        {
+            for (size_t k = 0; k < cnt(); k++)
+            {
+                std::string key = _seq[k];
+                vec.push_back(key);
+            } // loop
+        } // if
+        return vec;
+    } // method
+
+    template<class V> std::vector<V>
+    PaxMap<V>::vals()
+    {
+        std::vector<V> vec;
+        if (cnt() > 0)
+        {
+            for (size_t k = 0; k < cnt(); k++)
+            {
+                std::string key = _seq[k];
+                if (has(key))
+                { // however, not necessarily ..
+                    std::string val = _map[key];
+                    vec.push_back(val);
+                } // if
+            } // loop
+        } // if
+        return vec;
+    } // method
+
+    template<class V> void
+    PaxMap<V>::dbg(void)
+    {
+
+        PaxMap pax;
+        pax.add("Bob", "Dylan");
+
+        for (int i = 0; i < 100; i++)
+        {
+            std::string key = std::to_string(i + 1);
+            std::string val = std::to_string((i + 1) * (i + 1));
+            pax.add(key, val);
+        } // loop
+
+        bool isStored = pax.has("42");
+
+        bool wasDeleted = pax.del("23");
+
+        std::vector<std::string> keys = pax.keys();
+        std::vector<V> vals = pax.vals();
+        for (std::size_t k = 0; k < keys.size(); k++)
+        { // those are of same size
+            std::string key = keys[k];
+            V val = vals[k];
+            std::cout
+                << "key: " << key
+                << " => "
+                << "val: " << val
+                << std::endl
+                << std::flush;
+        } // loop
+    } // method
 
 } // namespace
