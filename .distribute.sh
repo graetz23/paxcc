@@ -8,9 +8,12 @@
 #
 SRCDIR=./paxcc
 SRCDOC="This is the way: Mando says .."
+
 git add main.cpp
 git add $SRCDIR/*.cpp
 git add $SRCDIR/*.h
-git commit -m $SRCDIR
+
+git commit -m "$SRCDOC"
+
 git push origin
 git push ugreen
