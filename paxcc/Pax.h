@@ -27,7 +27,7 @@
 #ifndef __Pax_h__
 #define __Pax_h__
 
-#include "./Children.h" // insertation sequence ordered hash map ..
+#include "./Children.h"   // insertation sequence ordered hash map ..
 #include "./Attributes.h" // insertation sequence ordered hash map ..
 
 namespace PAXCC
@@ -39,9 +39,9 @@ namespace PAXCC
     private:
         std::string _tag; // member
         std::string _val; // member
-        
-        Children _children; // member
-        Attributes _attributes; // member
+
+        Children *_children;     // member
+        Attributes *_attributes; // member
 
     protected:
     public:
@@ -56,8 +56,8 @@ namespace PAXCC
 
         bool isValid(void); // method
 
-        Attributes Attrib(void); // method
-        Children Child(void); // method
+        Attributes *Attrib(void); // method
+        Children *Child(void);    // method
 
     }; // class
 

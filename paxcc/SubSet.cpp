@@ -35,6 +35,11 @@ namespace PAXCC
 
     SubSet::~SubSet()
     {
+        std::vector<Pax*> vec = _map.vals();
+        for(size_t p = 0; p < vec.size(); p++) {
+            Pax* pax = vec[p];
+            delete pax;
+        } // loop
     } // destructor
 
     bool
@@ -44,9 +49,9 @@ namespace PAXCC
     } // method
 
     bool
-    SubSet::add(Pax pax)
+    SubSet::add(Pax* pax)
     {
-        std::string tag = pax.Tag();
+        std::string tag = pax->Tag();
         if (has(tag))
         {
             // TODO gen helping hand on tag value, due to been occupied ..
@@ -55,19 +60,17 @@ namespace PAXCC
         return wasAdded;
     } // method
 
-    Pax
+    Pax*
     SubSet::get(std::string tag)
     {
-        Pax pax;
+        Pax* pax;
         if (has(tag))
         {
             pax = _map.get(tag);
         }
         else
         {
-            std::string na = "___na___";
-            pax.Tag(na);
-            pax.Val(na);
+            pax = 0;
         } // if
         return pax;
     } // method
@@ -93,10 +96,10 @@ namespace PAXCC
         return vec;
     } // method
 
-    std::vector<Pax>
+    std::vector<Pax*>
     SubSet::vals()
     {
-        std::vector<Pax> vec = _map.vals();
+        std::vector<Pax*> vec = _map.vals();
         return vec;
     } // method
 

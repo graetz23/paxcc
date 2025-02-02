@@ -31,10 +31,14 @@ namespace PAXCC
 
     Pax::Pax(void)
     {
+        _attributes = new Attributes();
+        _children = new Children();
     } // constructor
 
     Pax::~Pax(void)
     {
+        delete _attributes;
+        delete _children;
     } // destructor
 
     std::string
@@ -73,13 +77,13 @@ namespace PAXCC
         return isValid;
     } // method
 
-    Attributes
+    Attributes*
     Pax::Attrib(void)
     {
         return _attributes;
     } // method
 
-    Children
+    Children*
     Pax::Child(void)
     {
         return _children;
