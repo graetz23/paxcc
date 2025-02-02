@@ -24,9 +24,31 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include <iostream>
 #include "./paxcc/paxcc.h"
 
+using namespace PAXCC;
+
 int main( int arc, char** argv ) {
+
+  PaxMap pax;
+  pax.put("Bob", "Dylan");
+
+  for(int i=0; i < 100; i++) {
+    std::string key = std::to_string(i+1);
+    // const char* cKey = (const char*)key.c_str(); 
+    pax.put(key, key);
+  } // loopsecond
+
+  std::vector<std::string>::iterator it = pax.start();
+
+  for (pax.start(); it != pax.end(); it++)
+  {
+      std::cout << *it    // string (key)
+                << ' => '
+                // << pax.get(*it)   // string's value 
+                << std::endl;
+  }
 
   return 0;
 } // main

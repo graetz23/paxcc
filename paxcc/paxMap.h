@@ -24,4 +24,34 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./pax.h"
+
+#include <map>
+#include <unordered_map>
+#include <vector>
+#include <iostream>
+
+namespace PAXCC {
+
+class PaxMap {
+
+private:
+    std::vector<std::string> _seq; // member
+    std::map<std::string, std::string> _map; // member
+    std::vector<std::string>::iterator _it; // member
+
+public:
+
+    PaxMap( void ); // constructor
+    virtual ~PaxMap( void ); // destructor
+
+    void put(std::string key, std::string value); // method
+
+    std::string get(std::string key); // method
+
+    std::vector<std::string>::iterator start(); // method
+
+    std::vector<std::string>::iterator end(); // method
+
+}; // class
+
+} // namespace
