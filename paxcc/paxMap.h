@@ -27,11 +27,17 @@
 #include <map>
 #include <unordered_map>
 #include <vector>
+#include <algorithm>
 #include <iostream>
 
 namespace PAXCC
 {
 
+    /**
+     * @brief Template based class representing an easy to handle
+     * hash map that is ordered by the sequence of inserting.
+     *
+     */
     class PaxMap
     {
 
@@ -44,13 +50,15 @@ namespace PAXCC
         PaxMap(void);          // constructor
         virtual ~PaxMap(void); // destructor
 
-        void put(std::string key, std::string value); // method
+        bool has(std::string key);                    // method
+        bool add(std::string key, std::string value); // method
+        std::string get(std::string key);             // method
+        bool del(std::string key);                    // method
 
-        std::string get(std::string key); // method
+        // protected:
 
         std::vector<std::string>::iterator start(); // method
-
-        std::vector<std::string>::iterator end(); // method
+        std::vector<std::string>::iterator end();   // method
 
     }; // class
 

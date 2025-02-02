@@ -20,7 +20,7 @@ SRCDIR=.
 DOC=./doc
 
 # search for all files ending with .cpp
-SOURCES= $(shell find $(SRCDIR)/ | grep ".cpp" | grep -v ^"./doc/")
+SOURCES= $(shell find $(SRCDIR)/ | grep ".cpp" | grep -v "^./doc/")
 
 # exchange the ending to .o for all found files
 OBJECTS=$(SOURCES:.cpp=.o)

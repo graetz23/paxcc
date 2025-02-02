@@ -1,7 +1,7 @@
 /**
  * MIT License
  *
- * PAXCC - Parse Any XML using C++
+ * PAXCC - A pretty simple C++ Data Passenger
  *
  * Copyright (c) 2025 Christian (graetz23@gmail.com)
  *
@@ -32,23 +32,25 @@ using namespace PAXCC;
 int main( int arc, char** argv ) {
 
   PaxMap pax;
-  pax.put("Bob", "Dylan");
+  pax.add("Bob", "Dylan");
 
   for(int i=0; i < 100; i++) {
     std::string key = std::to_string(i+1);
-    // const char* cKey = (const char*)key.c_str(); 
-    pax.put(key, key);
-  } // loopsecond
+    pax.add(key, key);
+  } // loop
+
+  bool isStored = pax.has("42");
+
+  bool wasDeleted = pax.del("23");
 
   std::vector<std::string>::iterator it = pax.start();
-
   for (pax.start(); it != pax.end(); it++)
   {
       std::cout << *it    // string (key)
                 << ' => '
                 // << pax.get(*it)   // string's value 
                 << std::endl;
-  }
+  } // loop
 
   return 0;
 } // main
