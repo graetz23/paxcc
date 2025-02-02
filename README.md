@@ -9,5 +9,6 @@ any kind of -- hierarchically -- structured data to PAX; e.g. using XMLs SAX int
 
 ## ChangeLOG
 
-- 250202 Adding _Visual Studio Code_ debugging configuration using g++ and gb.
+- 250202 Adding _Visual Studio Code_ debugging configuration using g++ and gdb.
+         Adding _PaxMap_ a sequence ordered hash map as template implementation.
 - 250201 Created the paxcc project and added make.
