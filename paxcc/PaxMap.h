@@ -50,17 +50,17 @@ namespace PAXCC
         PaxMap(void);          // constructor
         virtual ~PaxMap(void); // destructor
 
-        bool has(std::string key);                    // method
+        bool has(std::string key); // method
+
         bool add(std::string key, std::string value); // method
         std::string get(std::string key);             // method
         bool del(std::string key);                    // method
-        std::size_t cnt(void);                                // method
-        std::vector<std::string> vec(void);          // method
 
-        // protected:
+        std::size_t cnt(void);               // method
+        std::vector<std::string> keys(void); // method
+        std::vector<std::string> vals(void); // method
 
-        std::vector<std::string>::iterator start(); // method
-        std::vector<std::string>::iterator end();   // method
+        void dbg(void); // method
 
     }; // class
 

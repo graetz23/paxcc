@@ -88,7 +88,22 @@ namespace PAXCC
     } // method
 
     std::vector<std::string>
-    PaxMap::vec()
+    PaxMap::keys()
+    {
+        std::vector<std::string> vec;
+        if (cnt() > 0)
+        {
+            for (size_t k = 0; k < cnt(); k++)
+            {
+                std::string key = _seq[k];
+                vec.push_back(key);
+            } // loop
+        } // if
+        return vec;
+    } // method
+
+    std::vector<std::string>
+    PaxMap::vals()
     {
         std::vector<std::string> vec;
         if (cnt() > 0)
@@ -97,7 +112,7 @@ namespace PAXCC
             {
                 std::string key = _seq[k];
                 if (has(key))
-                {
+                { // however, not necessarily ..
                     std::string val = _map[key];
                     vec.push_back(val);
                 } // if
@@ -106,19 +121,37 @@ namespace PAXCC
         return vec;
     } // method
 
-    std::vector<std::string>::iterator
-    PaxMap::start()
+    void
+    PaxMap::dbg(void)
     {
-        _it = _seq.begin();
-        return _it;
-    } // method
 
-    std::vector<std::string>::iterator
-    PaxMap::end()
-    {
-        std::vector<std::string>::iterator it;
-        it = _seq.end();
-        return it;
+        PaxMap pax;
+        pax.add("Bob", "Dylan");
+
+        for (int i = 0; i < 100; i++)
+        {
+            std::string key = std::to_string(i + 1);
+            std::string val = std::to_string((i + 1) * (i + 1));
+            pax.add(key, val);
+        } // loop
+
+        bool isStored = pax.has("42");
+
+        bool wasDeleted = pax.del("23");
+
+        std::vector<std::string> keys = pax.keys();
+        std::vector<std::string> vals = pax.vals();
+        for (std::size_t k = 0; k < keys.size(); k++)
+        { // those are of same size
+            std::string key = keys[k];
+            std::string val = vals[k];
+            std::cout
+                << "key: " << key
+                << " => "
+                << "val: " << val
+                << std::endl
+                << std::flush;
+        } // loop
     } // method
 
 } // namespace
