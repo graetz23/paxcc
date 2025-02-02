@@ -28,20 +28,15 @@
 
 namespace PAXCC
 {
-    namespace PAX
+    class Children : public SubSet
     {
 
-        class Children : SubSet
-        {
+    private:
+    protected:
+    public:
+        Children(void);          // constructor
+        virtual ~Children(void); // destructor
 
-        private:
-        protected:
-        public:
-            Children(void);          // constructor
-            virtual ~Children(void); // destructor
-
-        }; // class
-
-    } // namespace
+    }; // class
 
 } // namespace

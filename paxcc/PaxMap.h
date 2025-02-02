@@ -113,6 +113,7 @@ namespace PAXCC
         {
             _seq.push_back(key);
             _map[key] = value;
+            wasStored = true;
         } // if
         return wasStored;
     } // method

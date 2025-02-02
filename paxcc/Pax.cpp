@@ -31,10 +31,14 @@ namespace PAXCC
 
     Pax::Pax(void)
     {
+        _attributes = new Attributes();
+        _children = new Children();
     } // constructor
 
     Pax::~Pax(void)
     {
+        delete _attributes;
+        delete _children;
     } // destructor
 
     std::string
@@ -66,10 +70,23 @@ namespace PAXCC
     {
         bool isValid = true;
         std::string na = "___na___";
-        if(Tag() == na && Val() == na) {
+        if (Tag() == na && Val() == na)
+        {
             isValid = false;
         } // if
         return isValid;
+    } // method
+
+    Attributes*
+    Pax::Attrib(void)
+    {
+        return _attributes;
+    } // method
+
+    Children*
+    Pax::Child(void)
+    {
+        return _children;
     } // method
 
 } // namespace
