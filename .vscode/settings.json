@@ -1,0 +1,11 @@
+{
+    "makefile.makefilePath": "./Makefile",
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/chris/source/cesmova",
+            "binaryPath": "/home/chris/source/cesmova/cesmova",
+            "binaryArgs": []
+        }
+    ],
+    "makefile.buildLog": ""
+}
