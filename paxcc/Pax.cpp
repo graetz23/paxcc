@@ -33,12 +33,37 @@ namespace PAXCC
     {
         _attributes = new Attributes();
         _children = new Children();
+        _tag = nullptr;
+        _val = nullptr;
+    } // constructor
+
+    Pax::Pax(std::string tag)
+    {
+        _attributes = new Attributes();
+        _children = new Children();
+        _tag = tag;
+        _val = nullptr;
+    } // constructor
+
+    Pax::Pax(std::string tag, std::string val)
+    {
+        _attributes = new Attributes();
+        _children = new Children();
+        _tag = tag;
+        _val = val;
+    } // constructor
+
+    Pax::Pax(Pax *pax)
+    {
+        // TODO do a recursive copy constructor here ..
     } // constructor
 
     Pax::~Pax(void)
     {
         delete _attributes;
+        _attributes = nullptr;
         delete _children;
+        _children = nullptr;
     } // destructor
 
     std::string
@@ -65,28 +90,59 @@ namespace PAXCC
         _val = val;
     } // method
 
-    bool
-    Pax::isValid(void)
-    {
-        bool isValid = true;
-        std::string na = "___na___";
-        if (Tag() == na && Val() == na)
-        {
-            isValid = false;
-        } // if
-        return isValid;
-    } // method
-
-    Attributes*
+    Attributes *
     Pax::Attrib(void)
     {
         return _attributes;
     } // method
 
-    Children*
+    Pax *
+    Pax::Attrib(std::string tag)
+    {
+        Pax *pax = _attributes->get(tag);
+        return pax;
+    } // method
+
+    bool Pax::hasAttrib(void)
+    {
+        bool hasAttrib = false;
+        size_t cnt = Attrib()->cnt();
+        if( cnt > 0) {
+            hasAttrib = true;
+        } // if
+        return hasAttrib;
+    } // method
+
+    Children *
     Pax::Child(void)
     {
         return _children;
+    } // method
+
+    Pax *
+    Pax::Child(std::string tag)
+    {
+        Pax *pax = _children->get(tag);
+        return pax;
+    } // method
+
+    bool Pax::hasChild(void)
+    {
+        bool hasChild = false;
+        size_t cnt = Child()->cnt();
+        if( cnt > 0) {
+            hasChild = true;
+        } // if
+        return hasChild;
+    } // method
+
+
+    std::vector<std::string> *
+    Pax::XML(void)
+    {
+        std::vector<std::string> *vec = new std::vector<std::string>();
+
+        return vec;
     } // method
 
 } // namespace

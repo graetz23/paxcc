@@ -37,6 +37,8 @@ namespace PAXCC
         Attributes(void);          // constructor
         virtual ~Attributes(void); // destructor
 
+        std::vector<std::string> XML(); // method
+    
     }; // class
 
 } // namespace

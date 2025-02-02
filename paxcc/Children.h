@@ -37,6 +37,8 @@ namespace PAXCC
         Children(void);          // constructor
         virtual ~Children(void); // destructor
 
+        std::vector<std::string> XML(); // method
+
     }; // class
 
 } // namespace

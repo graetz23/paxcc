@@ -37,4 +37,11 @@ namespace PAXCC
     {
     } // destructor
 
+    std::vector<std::string>
+    Children::XML()
+    {
+        std::vector<std::string> vec;
+        return vec;
+    } // method
+
 } // namespace
