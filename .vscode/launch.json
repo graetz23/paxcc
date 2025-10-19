@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/build/example",
             "args": [],
             "stopAtEntry": true,
-            "cwd": "/usr/src/glibc/debian",
+            "cwd": "${workspaceFolder}/build/",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
