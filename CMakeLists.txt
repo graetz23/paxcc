@@ -40,16 +40,14 @@ target_sources(${paxcc}
     ${paxcc_src}/paxccReader.cpp
     ${paxcc_src}/paxccSubSet.cpp
     ${paxcc_src}/paxccWriter.cpp
-		# adding the base system functions ..
-		${paxcc_src}/paxccSysError.cpp
-		${paxcc_src}/paxccSysException.cpp
-		${paxcc_src}/paxccSysFailure.cpp
-		${paxcc_src}/paxccSysStrTool.cpp
-		${paxcc_src}/paxccSysXmlHandler.cpp
-		${paxcc_src}/paxccSysXmlParser.cpp
-		${paxcc_src}/paxccSysXmlTool.cpp
-
-
+    # adding the base system functions ..
+    ${paxcc_src}/paxccSysError.cpp
+    ${paxcc_src}/paxccSysException.cpp
+    ${paxcc_src}/paxccSysFailure.cpp
+    ${paxcc_src}/paxccSysStrTool.cpp
+    ${paxcc_src}/paxccSysXmlHandler.cpp
+    ${paxcc_src}/paxccSysXmlParser.cpp
+    ${paxcc_src}/paxccSysXmlTool.cpp
 
   PUBLIC
     FILE_SET HEADERS
@@ -69,17 +67,17 @@ target_sources(${paxcc}
       ${paxcc_src}/paxccReader.h
       ${paxcc_src}/paxccSubSet.h
       ${paxcc_src}/paxccWriter.h
-			# adding the base system functions ..
-			${paxcc_src}/paxccSys.h
-			${paxcc_src}/paxccSysDefines.h
-			${paxcc_src}/paxccSysError.h
-			${paxcc_src}/paxccSysException.h
-			${paxcc_src}/paxccSysFailure.h
-			${paxcc_src}/paxccSysList.h
-			${paxcc_src}/paxccSysStrTool.h
-			${paxcc_src}/paxccSysXmlHandler.h
-			${paxcc_src}/paxccSysXmlParser.h
-			${paxcc_src}/paxccSysXmlTool.h
+      # adding the base system functions ..
+      ${paxcc_src}/paxccSys.h
+      ${paxcc_src}/paxccSysDefines.h
+      ${paxcc_src}/paxccSysError.h
+      ${paxcc_src}/paxccSysException.h
+      ${paxcc_src}/paxccSysFailure.h
+      ${paxcc_src}/paxccSysList.h
+      ${paxcc_src}/paxccSysStrTool.h
+      ${paxcc_src}/paxccSysXmlHandler.h
+      ${paxcc_src}/paxccSysXmlParser.h
+      ${paxcc_src}/paxccSysXmlTool.h
 
 ) # adding all source and header files of the library
 
