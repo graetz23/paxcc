@@ -24,3 +24,31 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+
+#ifndef __PaxWriter_h__
+#define __PaxWriter_h__
+
+#include "./paxcc.h" // include the xml tooling libary
+#include "./paxccSys.h" // include the xml tooling libary
+
+namespace PAXCC
+{
+
+    class PaxWriter {
+
+        protected:
+        
+        SYS::XmlParser* _parser; /// XML parser instance
+
+        public:
+            
+        PaxWriter(void); // constructor
+        virtual ~PaxWriter(void); // destructor
+
+        void write(const SYS::Str fileName, Pax* root); // read from file
+
+    }; // class
+
+} // namespace PAXCC
+
+ #endif // __PaxWriter_h__

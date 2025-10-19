@@ -27,8 +27,8 @@
 #ifndef __Pax_h__
 #define __Pax_h__
 
-#include "./Children.h"   // insertation sequence ordered hash map ..
-#include "./Attributes.h" // insertation sequence ordered hash map ..
+#include "./paxccChildren.h"   // insertation sequence ordered hash map ..
+#include "./paxccAttributes.h" // insertation sequence ordered hash map ..
 
 namespace PAXCC
 {

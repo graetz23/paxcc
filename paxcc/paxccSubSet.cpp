@@ -25,8 +25,8 @@
  */
 
 #include <sstream>
-#include "./Pax.h"
-#include "./SubSet.h"
+#include "./paxccPax.h"
+#include "./paxccSubSet.h"
 
 namespace PAXCC
 {

@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -24,11 +24,52 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef __paxcc_h__
-#define __paxcc_h__
+#include "./paxccSysFailure.h"
 
-#include "./paxccPax.h" // composite pattern
-#include "./paxccReader.h" // pax XML reader
-#include "./paxccWriter.h" // pax XML writer
+/******************************************************************************/
 
-#endif // __paxcc_h__
+namespace PAXCC {
+
+namespace SYS {
+
+/******************************************************************************/
+
+Failure::Failure( void ) :
+    Exception( ) {
+} // Failure
+
+Failure::Failure( Str message ) :
+    Exception( message ) {
+} // Failure
+
+Failure::Failure( Str message, int lineNo ) :
+    Exception( message, lineNo ) {
+} // Failure
+
+Failure::Failure( Str message, char* fileName ) :
+    Exception( message, fileName ) {
+} // Failure
+
+Failure::Failure( Str message, char* fileName, int lineNo ) :
+    Exception( message, fileName, lineNo ) {
+} // Failure
+
+Failure::~Failure( void ) {
+} //  ~Failure
+
+/******************************************************************************/
+
+void /// mark exception
+Failure::mark( void ) {
+  Str tmp = "PAXCC::Failure::";
+  tmp.append( _message );
+  _message = tmp;
+} // Failure::mark
+
+/******************************************************************************/
+
+} // namespace SYS
+
+} // namespace PAXCC
+
+/******************************************************************************/

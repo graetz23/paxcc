@@ -8,13 +8,13 @@ message("Running on CMake version ${cmake_version}")
 
 cmake_minimum_required(VERSION ${cmake_version})
 
-set(prj_name "PAXCC") # the prj name
-set(prj_binary "example") # the prj binary file
-set(prj_version "0.5") # the prj version
+set(prj_name "PAXCC") # the project name
+set(prj_binary "example") # the project binary file
+set(prj_version "0.5") # the project version
 
-project(${prj_name}) # prj name
+project(${prj_name}) # project name
 
-message("Building ${prj_name} prj in version ${prj_version}")
+message("Building ${prj_name} project in version ${prj_version}")
 
 add_executable(${prj_binary})
 
@@ -32,33 +32,55 @@ add_library(${paxcc})
 
 target_sources(${paxcc}
   PRIVATE
-    ${paxcc_src}/Attributes.cpp
-    ${paxcc_src}/Children.cpp
-    ${paxcc_src}/Factory.cpp
-    ${paxcc_src}/Pax.cpp
-    ${paxcc_src}/PaxMap.cpp
-    ${paxcc_src}/Reader.cpp
-    ${paxcc_src}/SubSet.cpp
-    ${paxcc_src}/Writer.cpp
+    ${paxcc_src}/paxccAttributes.cpp
+    ${paxcc_src}/paxccChildren.cpp
+    ${paxcc_src}/paxccFactory.cpp
+    ${paxcc_src}/paxccPax.cpp
+    ${paxcc_src}/paxccPaxMap.cpp
+    ${paxcc_src}/paxccReader.cpp
+    ${paxcc_src}/paxccSubSet.cpp
+    ${paxcc_src}/paxccWriter.cpp
+		# adding the base system functions ..
+		${paxcc_src}/paxccSysError.cpp
+		${paxcc_src}/paxccSysException.cpp
+		${paxcc_src}/paxccSysFailure.cpp
+		${paxcc_src}/paxccSysStrTool.cpp
+		${paxcc_src}/paxccSysXmlHandler.cpp
+		${paxcc_src}/paxccSysXmlParser.cpp
+		${paxcc_src}/paxccSysXmlTool.cpp
+
+
 
   PUBLIC
     FILE_SET HEADERS
     BASE_DIRS
       ${paxcc_src}
     FILES
-      ${paxcc_src}/AAttribute.h
-      ${paxcc_src}/AChildren.h
-      ${paxcc_src}/AFactory.h
-      ${paxcc_src}/APax.h
-      ${paxcc_src}/ASubSet.h
-      ${paxcc_src}/Attributes.h
-      ${paxcc_src}/Children.h
-      ${paxcc_src}/Pax.h
+      ${paxcc_src}/paxccAAttribute.h
+      ${paxcc_src}/paxccAChildren.h
+      ${paxcc_src}/paxccAFactory.h
+      ${paxcc_src}/paxccAPax.h
+      ${paxcc_src}/paxccASubSet.h
+      ${paxcc_src}/paxccAttributes.h
+      ${paxcc_src}/paxccChildren.h
+      ${paxcc_src}/paxccPax.h
       ${paxcc_src}/paxcc.h
-      ${paxcc_src}/PaxMap.h
-      ${paxcc_src}/Reader.h
-      ${paxcc_src}/SubSet.h
-      ${paxcc_src}/Writer.h
+      ${paxcc_src}/paxccPaxMap.h
+      ${paxcc_src}/paxccReader.h
+      ${paxcc_src}/paxccSubSet.h
+      ${paxcc_src}/paxccWriter.h
+			# adding the base system functions ..
+			${paxcc_src}/paxccSys.h
+			${paxcc_src}/paxccSysDefines.h
+			${paxcc_src}/paxccSysError.h
+			${paxcc_src}/paxccSysException.h
+			${paxcc_src}/paxccSysFailure.h
+			${paxcc_src}/paxccSysList.h
+			${paxcc_src}/paxccSysStrTool.h
+			${paxcc_src}/paxccSysXmlHandler.h
+			${paxcc_src}/paxccSysXmlParser.h
+			${paxcc_src}/paxccSysXmlTool.h
+
 ) # adding all source and header files of the library
 
 target_link_libraries(${prj_binary}

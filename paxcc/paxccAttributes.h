@@ -24,41 +24,26 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef __SubSet_h__
-#define __SubSet_h__
+#ifndef __Attributes_h__
+#define __Attributes_h__
 
-#include "./PaxMap.h"
+#include "./paxccSubSet.h"
 
 namespace PAXCC
 {
-    class Pax; // link it up ..
-
-    class SubSet
+    class Attributes : public SubSet
     {
 
     private:
-        PaxMap<Pax *> *_map; // member
-
     protected:
     public:
-        SubSet(void);          // constructor
-        virtual ~SubSet(void); // destructor
+        Attributes(void);          // constructor
+        virtual ~Attributes(void); // destructor
 
-        bool has(std::string tag); // method
-
-        bool add(Pax *pax);                         // method
-        bool add(std::string tag);                  // method
-        bool add(std::string tag, std::string val); // method
-
-        Pax *get(std::string tag); // method
-        bool del(std::string tag); // method
-
-        size_t cnt(void);                // method
-        std::vector<std::string> tags(); // method
-        std::vector<Pax *> vals();       // method
+        std::string XML(); // method
 
     }; // class
 
 } // namespace
 
-#endif // __SubSet_h__
+#endif // __Attributes_h__

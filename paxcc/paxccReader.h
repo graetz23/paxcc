@@ -24,3 +24,29 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef __PaxReader_h__
+#define __PaxReader_h__
+
+#include "./paxccSys.h" // include the xml tooling libary
+
+namespace PAXCC
+{
+
+    class PaxReader {
+
+        protected:
+        
+        SYS::XmlParser* _parser; /// XML parser instance
+
+        public:
+            
+        PaxReader(void); // constructor
+        virtual ~PaxReader(void); // destructor
+
+        void read(const SYS::Str fileName); // read from file
+
+    }; // class
+
+} // namespace PAXCC
+
+ #endif // __PaxReader_h__

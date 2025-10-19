@@ -54,7 +54,17 @@
         "ostream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "charconv": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "format": "cpp",
+        "fstream": "cpp",
+        "span": "cpp",
+        "sstream": "cpp",
+        "text_encoding": "cpp",
+        "cinttypes": "cpp",
+        "variant": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }

@@ -24,3 +24,52 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include "./paxccSysError.h"
+
+/******************************************************************************/
+
+namespace PAXCC {
+
+namespace SYS {
+
+/******************************************************************************/
+
+Error::Error( void ) :
+    Exception( ) {
+} // Error
+
+Error::Error( Str message ) :
+    Exception( message ) {
+} // Error
+
+Error::Error( Str message, int lineNo ) :
+    Exception( message, lineNo ) {
+} // Error
+
+Error::Error( Str message, char* fileName ) :
+    Exception( message, fileName ) {
+} // Error
+
+Error::Error( Str message, char* fileName, int lineNo ) :
+    Exception( message, fileName, lineNo ) {
+} // Error
+
+Error::~Error( void ) {
+} // ~Error
+
+/******************************************************************************/
+
+void /// mark exception
+Error::mark( void ) {
+  Str tmp = "PAXCC::Error::";
+  tmp.append( _message );
+  _message = tmp;
+} // Error::mark
+
+/******************************************************************************/
+
+} // namespace SYS
+
+} // namespace PAXCC
+
+/******************************************************************************/

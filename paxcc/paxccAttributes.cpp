@@ -24,19 +24,48 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./Pax.h"
-#include "./Children.h"
+#include "./paxccPax.h"
+#include "./paxccAttributes.h"
 
 namespace PAXCC
 {
     class Pax; // we link em up ..
 
-    Children::Children()
+    Attributes::Attributes()
     {
     } // constructor
 
-    Children::~Children()
+    Attributes::~Attributes()
     {
     } // destructor
+
+    std::string
+    Attributes::XML(void)
+    {
+        std::string xml;
+        size_t cnt = this->cnt();
+        if (cnt > 0)
+        {
+            std::vector<Pax *> paxs = this->vals();
+            for (size_t p = 0; p < cnt; p++)
+            {
+                Pax *pax = paxs[p];
+                std::string tag = pax->Tag();
+                xml.append(tag);
+                xml.append("=\"");
+                if (pax->hasVal())
+                {
+                    std::string val = pax->Val();
+                    xml.append(val);
+                } // if
+                xml.append("\"");
+                if (p + 1 < cnt)
+                {
+                    xml.append(" ");
+                } // if
+            } // loop
+        } // if
+        return xml;
+    } // method
 
 } // namespace

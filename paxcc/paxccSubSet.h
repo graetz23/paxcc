@@ -24,48 +24,41 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./Pax.h"
-#include "./Attributes.h"
+#ifndef __SubSet_h__
+#define __SubSet_h__
+
+#include "./paxccPaxMap.h"
 
 namespace PAXCC
 {
-    class Pax; // we link em up ..
+    class Pax; // link it up ..
 
-    Attributes::Attributes()
+    class SubSet
     {
-    } // constructor
 
-    Attributes::~Attributes()
-    {
-    } // destructor
+    private:
+        PaxMap<Pax *> *_map; // member
 
-    std::string
-    Attributes::XML(void)
-    {
-        std::string xml;
-        size_t cnt = this->cnt();
-        if (cnt > 0)
-        {
-            std::vector<Pax *> paxs = this->vals();
-            for (size_t p = 0; p < cnt; p++)
-            {
-                Pax *pax = paxs[p];
-                std::string tag = pax->Tag();
-                xml.append(tag);
-                xml.append("=\"");
-                if (pax->hasVal())
-                {
-                    std::string val = pax->Val();
-                    xml.append(val);
-                } // if
-                xml.append("\"");
-                if (p + 1 < cnt)
-                {
-                    xml.append(" ");
-                } // if
-            } // loop
-        } // if
-        return xml;
-    } // method
+    protected:
+    public:
+        SubSet(void);          // constructor
+        virtual ~SubSet(void); // destructor
+
+        bool has(std::string tag); // method
+
+        bool add(Pax *pax);                         // method
+        bool add(std::string tag);                  // method
+        bool add(std::string tag, std::string val); // method
+
+        Pax *get(std::string tag); // method
+        bool del(std::string tag); // method
+
+        size_t cnt(void);                // method
+        std::vector<std::string> tags(); // method
+        std::vector<Pax *> vals();       // method
+
+    }; // class
 
 } // namespace
+
+#endif // __SubSet_h__

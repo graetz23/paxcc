@@ -24,7 +24,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./PaxMap.h"
+#include "./paxccPaxMap.h"
 
 namespace PAXCC
 {

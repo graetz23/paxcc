@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -24,11 +24,27 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef __paxcc_h__
-#define __paxcc_h__
+ #include "./paxccReader.h"
+#include "./paxccSysXmlHandler.h" // SYS::XmlHandler
 
-#include "./paxccPax.h" // composite pattern
-#include "./paxccReader.h" // pax XML reader
-#include "./paxccWriter.h" // pax XML writer
+namespace PAXCC
+{
 
-#endif // __paxcc_h__
+    PaxReader::PaxReader(void)
+    {
+        _parser = new SYS::XmlParser( new SYS::XmlHandler( true ) );
+    } // constructor
+
+    PaxReader::~PaxReader(void)
+    {
+        delete _parser;
+    } // destructor
+
+    void PaxReader::read(const SYS::Str fileName)
+    {
+        std::cout << "PaxReader::read(): Reading file '" << fileName << "' ..." << std::endl;
+        // use the XML parser to read the file
+        _parser->parse(fileName);
+    } // read
+
+} // namespace PAXCC

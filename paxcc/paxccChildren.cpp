@@ -24,26 +24,19 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef __Attributes_h__
-#define __Attributes_h__
-
-#include "./SubSet.h"
+#include "./paxccPax.h"
+#include "./paxccChildren.h"
 
 namespace PAXCC
 {
-    class Attributes : public SubSet
+    class Pax; // we link em up ..
+
+    Children::Children()
     {
+    } // constructor
 
-    private:
-    protected:
-    public:
-        Attributes(void);          // constructor
-        virtual ~Attributes(void); // destructor
-
-        std::string XML(); // method
-
-    }; // class
+    Children::~Children()
+    {
+    } // destructor
 
 } // namespace
-
-#endif // __Attributes_h__

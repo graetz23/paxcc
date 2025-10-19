@@ -74,7 +74,16 @@ int main(int arc, char **argv)
   std::string xml_ = pax1->XML();  // generate XML from object tree ..
   std::cout << xml_ << std::flush; // print out
 
+  PaxWriter writer;
+  writer.write("example_output.xml", pax1); // write to file  
+
   delete pax1; // working recursively well on first run ..
+
+  PaxReader reader;
+  reader.read("example_output.xml"); // read from file
+  // Pax* root = reader.read("example_output.xml"); // read from file
+  // std::string xml__ = root->XML();  // generate XML from object tree ..
+  // std::cout << xml__ << std::flush; // print out
 
   return 0;
 } // main

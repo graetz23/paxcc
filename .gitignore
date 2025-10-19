@@ -2,6 +2,7 @@
 paxcc_example
 build/
 doc/
+example*
 
 # Prerequisites
 *.d

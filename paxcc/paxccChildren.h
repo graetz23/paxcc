@@ -27,7 +27,7 @@
 #ifndef __Children_h__
 #define __Children_h__
 
-#include "./SubSet.h"
+#include "./paxccSubSet.h"
 
 namespace PAXCC
 {
