@@ -38,8 +38,6 @@ namespace PAXCC
 
         protected:
         
-        SYS::XmlParser* _parser; /// XML parser instance
-
         public:
             
         PaxWriter(void); // constructor

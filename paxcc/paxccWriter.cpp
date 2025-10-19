@@ -28,14 +28,10 @@
 
 namespace PAXCC
 {
-    PaxWriter::PaxWriter(void)
-    {
-        _parser = new SYS::XmlParser();
+    PaxWriter::PaxWriter(void) {
     } // constructor
 
-    PaxWriter::~PaxWriter(void)
-    {
-        delete _parser;
+    PaxWriter::~PaxWriter(void) {
     } // destructor
 
     void PaxWriter::write(const SYS::Str fileName, Pax* root)
