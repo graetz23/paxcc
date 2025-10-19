@@ -208,6 +208,33 @@ This leads to the fact, that if one wants to change data on treed _Pax_,
 he has to also deal with the object tree. Therefore, retrieving the object
 above, deleting the _Pax_ from object tree, changing it, and adding it again.
 
+## Building the PAXCC
+
+For building PAXCC two build tools are available.
+
+### Static Make
+
+For the static Makefile using g++:
+```bash
+make
+```
+For cleaning up:
+```bash
+make clean
+```
+
+## Cmake Build Tooling
+
+For modern CMake version install _CMake_ and _ninja_.
+For generating ninja build files and building via ninja:
+```bash
+./build.sh
+```
+For cleaning up, remove the generated _build_ directory:
+```bash
+rm -rf build/
+```
+
 ## ChangeLog
 
 - 250202 Adding _Visual Studio Code_ debugging configuration using g++ and gdb.
