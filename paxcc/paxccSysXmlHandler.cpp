@@ -58,9 +58,8 @@ void // called before reading document
 XmlHandler::startDoc( void ) {
 
   if( _isTalking ) {
-    std::cout << std::endl << std::endl << std::flush;
-    std::cout << "PAXCC::SYS::XmlParser starts reading document" << std::endl
-      << std::flush;
+    std::cout << std::endl << std::endl;
+    std::cout << "PAXCC::SYS::XmlParser starts reading document" << std::endl;
   } else {
     throw Failure( "SYS::XmlHandler - do not use base handler class" );
   } // if _istalking
@@ -73,7 +72,7 @@ void // called for each starting XML tag
 XmlHandler::startTag( Str tag ) {
 
   if( _isTalking )
-    std::cout << tag << std::endl << std::flush;
+    std::cout << tag << std::endl;
   else
     throw Failure( "SYS::XmlHandler - do not use base handler class" );
 
@@ -85,7 +84,7 @@ void // called for each text value in XML
 XmlHandler::characters( Str txt ) {
 
   if( _isTalking )
-    std::cout << txt << std::endl << std::flush;
+    std::cout << txt << std::endl;
   else
     throw Failure( "SYS::XmlHandler - do not use base handler class" );
 
@@ -97,7 +96,7 @@ void // called for each ending XML tag
 XmlHandler::endTag( Str tag ) {
 
   if( _isTalking )
-    std::cout << tag << std::endl << std::flush;
+    std::cout << tag << std::endl;
   else
     throw Failure( "SYS::XmlHandler - do not use base handler class" );
 
@@ -109,8 +108,8 @@ void // called after reading document
 XmlHandler::endDoc( void ) {
 
   if( _isTalking ) {
-    std::cout << "PAXCC::SYS::XmlParser ends reading document" << std::flush;
-    std::cout << std::endl << std::endl << std::flush;
+    std::cout << "PAXCC::SYS::XmlParser ends reading document";
+    std::cout << std::endl << std::endl;
   } else {
     throw Failure( "SYS::XmlHandler - do not use base handler class" );
   } // if _istalking

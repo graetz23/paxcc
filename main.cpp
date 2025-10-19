@@ -53,8 +53,7 @@ int main(int arc, char **argv)
   pax2->Child()->add(pax4); // pax3 as child of pax2
 
   std::string xml = pax1->XML();
-  std::cout << xml << std::endl
-            << std::flush;
+  std::cout << xml << std::endl << std::flush;
   
   Pax* pax2_ = pax1->Child("Dolly");
 
@@ -72,7 +71,7 @@ int main(int arc, char **argv)
 
 
   std::string xml_ = pax1->XML();  // generate XML from object tree ..
-  std::cout << xml_ << std::flush; // print out
+  std::cout << xml_ << std::endl; // print out
 
   PaxWriter writer;
   writer.write("example_output.xml", pax1); // write to file  
