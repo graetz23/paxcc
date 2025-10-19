@@ -223,7 +223,7 @@ For cleaning up:
 make clean
 ```
 
-## Cmake Build Tooling
+### Cmake Build Tooling
 
 For modern CMake version install _CMake_ and _ninja_.
 For generating ninja build files and building via ninja:
