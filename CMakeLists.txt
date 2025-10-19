@@ -9,7 +9,7 @@ message("Running on CMake version ${cmake_version}")
 cmake_minimum_required(VERSION ${cmake_version})
 
 set(prj_name "PAXCC") # the prj name
-set(prj_binary "paxcc") # the prj binary file
+set(prj_binary "example") # the prj binary file
 set(prj_version "0.5") # the prj version
 
 project(${prj_name}) # prj name
@@ -25,10 +25,10 @@ target_sources(${prj_binary}
     ${prj_src}/main.cpp
 ) # adding the main binary file
 
-add_library(libpaxcc)
-
-set(paxcc "libpaxcc") # set variable for directory of library
+set(paxcc "paxcc") # set variable for directory of library
 set(paxcc_src "${prj_src}/paxcc") # set variable for directory of library
+
+add_library(${paxcc})
 
 target_sources(${paxcc}
   PRIVATE
