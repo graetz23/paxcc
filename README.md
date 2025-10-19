@@ -237,6 +237,9 @@ rm -rf build/
 
 ## ChangeLog
 
+- 251019 Adding CMake build configuration.
+         Adding C++98 XML parser withou any dependencies.
+
 - 250202 Adding _Visual Studio Code_ debugging configuration using g++ and gdb.
          Adding _PaxMap_ a sequence ordered hash map as template implementation.
          Adding _Pax_ keeping _Children_ and _Attributes_ that have _Pax_ types
