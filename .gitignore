@@ -1,6 +1,7 @@
 # project-oriented
 paxcc_example
-doc/*
+build/
+doc/
 
 # Prerequisites
 *.d
