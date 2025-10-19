@@ -9,14 +9,14 @@
             "name": "(gdb) Starten",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/paxcc_example",
+            "program": "${workspaceFolder}/build/example",
             "args": [],
             "stopAtEntry": true,
-            "cwd": "/usr/src/glibc/glibc-2.39",
+            "cwd": "/usr/src/glibc/debian",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "preLaunchTask": "make",
+            "preLaunchTask": "shell_build",
             "setupCommands": [
                 {
                     "description": "Automatische Strukturierung und Einrückung für gdb aktivieren",

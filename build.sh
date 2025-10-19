@@ -6,7 +6,8 @@
 # 
 BUILD_DIR="./build"
 BUILD_TOOL="Ninja"
+BUILD_ARGS="-D CMAKE_BUILD_TYPE=Debug"
 
-cmake -G $BUILD_TOOL -B $BUILD_DIR
+cmake -G $BUILD_TOOL -B $BUILD_DIR $BUILD_ARGS
 cmake --build $BUILD_DIR
 

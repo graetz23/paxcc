@@ -26,22 +26,43 @@
         {
             "type": "shell",
             "label": "make",
-            "command": "make", // Could be any other shell command
-            "args": ["all"]
+            "command": "make",
+            "args": [
+                "all"
+            ]
         },
         {
             "type": "shell",
             "label": "make_clean",
-            "command": "make", // Could be any other shell command
-            "args": ["clean"]
+            "command": "make",
+            "args": [
+                "clean"
+            ]
         },
         {
             "type": "shell",
             "label": "make_docu",
-            "command": "make", // Could be any other shell command
-            "args": ["docu"]
+            "command": "make",
+            "args": [
+                "docu"
+            ]
+        },
+                {
+            "type": "shell",
+            "label": "shell_build",
+            "command": "./build.sh"
+        },
+        {
+            "type": "cmake",
+            "label": "cmake_build",
+            "command": "build",
+            "targets": [
+                "all"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "CMake template build task"
         }
-    
     ],
     "version": "2.0.0"
 }
