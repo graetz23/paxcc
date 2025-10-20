@@ -1,19 +1,19 @@
 # paxcc
 
-_A pretty simple C++ Data Passenger_; PAX is an airborne code.
+_A pretty simple C++ Data Passenger_; PAX is an airborne code or peace in latin.
 
 ## Introduction
 
-The PAX class is a C++ written _object tree_. It is the enabler for parsing
-any kind of - hierarchically - structured data to PAX; e.g. using XMLs SAX
-interfacing and building a multi-dimensional object tree of _Paxs_.
+The PAX class is a C++ written _double linked object tree_.
+It is an enabler for parsing any kind of - hierarchically - structured data; e.g. XML.
+A simple SAX like interface is available for parsing to a PAX object tree.
 
 A _Pax_ objects can take:
-    - a _tag_ name as std::string,
-    - a _value_ as std::string,
-    - any _attributes_ as pairs of _tag_ and _value,
-    - any _Pax_ object as _children_ of the current,
-    - may generate themselves to _extensible markup language (XML)_.
+  - a _tag_ name as std::string,
+  - a _value_ as std::string,
+  - any _attributes_ as pairs of _tag_ and _value,
+  - any _Pax_ object as _children_ of the current,
+  - may generate themselves to _extensible markup language (XML)_.
 
 Therefore, the _Pax_ objects allow for building multi-dimensional object trees
 that are infinitively deep. Any _Pax_ can reproduce itself recusively to XML,
@@ -28,89 +28,87 @@ How to use _Pax_, build object tree, and what can go wrong.
 Creating _Pax_ objects:
 
 ```C++
+  Pax* pax1 = new Pax("Bob", "Dylon");
 
-    Pax* pax1 = new Pax("Bob", "Dylon");
+  Pax *pax2 = new Pax();
+  pax2->Tag("Bob");
+  pax2->Val("Dylon");
 
-    Pax *pax2 = new Pax();
-    pax2->Tag("Bob");
-    pax2->Val("Dylon");
-
-    Pax* pax3 = new Pax("Bob");
-
+  Pax* pax3 = new Pax("Bob");
 ```
 
 Adding _Attributes_ to _Pax_ objects:
 
 ```C++
-    Pax* pax1 = new Pax("Bob", "Dylon");
-    pax1->Attrib()->add("plays", "guitar");
-    pax1->Attrib()->add("sings", "songs");
+  Pax* pax1 = new Pax("Bob", "Dylon");
+  pax1->Attrib()->add("plays", "guitar");
+  pax1->Attrib()->add("sings", "songs");
 ```
 
 Adding _Children_ to _Pax_ objects:
 
 ```C++
-    Pax* pax1 = new Pax("Bob", "Dylon");
-    Pax* pax2 = new Pax("Dolly", "Parton");
-    Pax* pax3 = new Pax("Johnny", "Cash");
+  Pax* pax1 = new Pax("Bob", "Dylon");
+  Pax* pax2 = new Pax("Dolly", "Parton");
+  Pax* pax3 = new Pax("Johnny", "Cash");
 
-    pax1->Child()->add(pax2); // pax2 as child of pax1
-    pax2->Child()->add(pax3); // pax3 as child of pax2
+  pax1->Child()->add(pax2); // pax2 as child of pax1
+  pax2->Child()->add(pax3); // pax3 as child of pax2
 ```
 
 Deleting _Pax_ objects:
 
 ```C++
-    Pax* root = new Pax("Bob", "Dylon");
-    Pax* pax2 = new Pax("Dolly", "Parton");
-    Pax* pax3 = new Pax("Johnny", "Cash");
+  Pax* root = new Pax("Bob", "Dylon");
+  Pax* pax2 = new Pax("Dolly", "Parton");
+  Pax* pax3 = new Pax("Johnny", "Cash");
 
-    root->Child()->add(pax2); // pax2 as child of pax1
-    pax2->Child()->add(pax3); // pax3 as child of pax2
+  root->Child()->add(pax2); // pax2 as child of pax1
+  pax2->Child()->add(pax3); // pax3 as child of pax2
 
-    delete root; // runs recursively ..
+  delete root; // runs recursively ..
 ```
 
 Generating XML from _Pax_ and writing to _std::out_:
 
 ```C++
-    Pax* pax1 = new Pax("Bob", "Dylon");
-    pax1->Attrib()->add("plays", "guitar");
-    pax1->Attrib()->add("sings", "songs");
+  Pax* pax1 = new Pax("Bob", "Dylon");
+  pax1->Attrib()->add("plays", "guitar");
+  pax1->Attrib()->add("sings", "songs");
 
-    Pax* pax2 = new Pax("Dolly", "Parton");
-    pax2->Attrib()->add("sings", "songs");
-    pax2->Attrib()->add("plays", "country guitar");
-    
-    
-    Pax* pax3 = new Pax("Johnny", "Cash");
-    pax3->Attrib()->add("plays", "guitar");
-    pax3->Attrib()->add("sings", "country songs");
+  Pax* pax2 = new Pax("Dolly", "Parton");
+  pax2->Attrib()->add("sings", "songs");
+  pax2->Attrib()->add("plays", "country guitar");
 
-    Pax* pax4 = new Pax("John", "Denver");
-    pax4->Attrib()->add("sings", "country songs");
-    pax4->Attrib()->add("plays", "country guitar");
 
-    pax1->Child()->add(pax2); // pax2 as child of pax1
-    pax2->Child()->add(pax3); // pax3 as child of pax2
-    pax2->Child()->add(pax4); // pax3 as child of pax2
+  Pax* pax3 = new Pax("Johnny", "Cash");
+  pax3->Attrib()->add("plays", "guitar");
+  pax3->Attrib()->add("sings", "country songs");
 
-    std::string xml = pax1->XML();
-    std::cout << xml << std::endl << std::flush;
+  Pax* pax4 = new Pax("John", "Denver");
+  pax4->Attrib()->add("sings", "country songs");
+  pax4->Attrib()->add("plays", "country guitar");
 
-    delete pax1; // runs recursively
+  pax1->Child()->add(pax2); // pax2 as child of pax1
+  pax2->Child()->add(pax3); // pax3 as child of pax2
+  pax2->Child()->add(pax4); // pax3 as child of pax2
+
+  std::string xml = pax1->XML();
+  std::cout << xml << std::endl << std::flush;
+
+  delete pax1; // runs recursively
 ```
 
 The XML of above example looks like:
 
 ```XML
-    <Bob plays="guitar" sings="songs">
-        <Dolly sings="songs" plays="country guitar">
-            <Johnny plays="guitar" sings="country songs">Cash</Johnny>
-            <John sings="country songs" plays="country guitar">Denver</John>
-        </Dolly>
-    </Bob>
-```
+  <Bob plays="guitar" sings="songs">
+    <Dolly sings="songs" plays="country guitar">
+      <Johnny plays="guitar" sings="country songs">Cash</Johnny>
+      <John sings="country songs" plays="country guitar">Denver</John>
+    </Dolly>
+  </Bob>
+````
 
 Retrieving _Pax_ from above example:
 
@@ -120,9 +118,8 @@ Retrieving _Pax_ from above example:
   Pax* pax2_ = pax1->Child("Dolly");
 
   Pax* pax3_ = pax2->Child("Johnny"); // from pax2
-  
-  Pax* pax4_ = pax1->Child("Dolly")->Child("John"); // chained
 
+  Pax* pax4_ = pax1->Child("Dolly")->Child("John"); // chained
 ```
 
 Retrieving _Tag_ and _Value_:
@@ -131,7 +128,6 @@ Retrieving _Tag_ and _Value_:
   Pax* pax = pax1->Child("Dolly")->Child("John"); // chained
   std::string tag = pax->Tag();
   std::string val = pax->Val();
-
 ```
 
 Retrieving _Attributes_ _Tag_ and _Value_:
@@ -155,16 +151,16 @@ methods stumbles over it an crashes off course. Here is an easy example to
 produce this error:
 
 ```C++
-    Pax* root = new Pax("Bob", "Dylon");
-    Pax* pax2 = new Pax("Dolly", "Parton");
-    Pax* pax3 = new Pax("Johnny", "Cash");
+  Pax* root = new Pax("Bob", "Dylon");
+  Pax* pax2 = new Pax("Dolly", "Parton");
+  Pax* pax3 = new Pax("Johnny", "Cash");
 
-    root->Child()->add(pax2); // pax2 as child of pax1
-    pax2->Child()->add(pax3); // pax3 as child of pax2
+  root->Child()->add(pax2); // pax2 as child of pax1
+  pax2->Child()->add(pax3); // pax3 as child of pax2
 
-    delete pax2; // the error one can make ..
+  delete pax2; // the error one can make ..
 
-    delete root; // runs recursively .. and crashes!
+  delete root; // runs recursively .. and crashes!
 ```
 
 The reason is simple. The Higher _Pax_ holds in his child list still the pointer
@@ -179,29 +175,29 @@ _Pax_ of higher hierarchy still the old _Tag_ to the address of the changed _Pax
 The following example details this issue:
 
 ```C++
-    Pax* root = new Pax("Bob", "Dylon");
-    Pax* pax2 = new Pax("Dolly", "Parton");
-    Pax* pax3 = new Pax("Johnny", "Cash");
+  Pax* root = new Pax("Bob", "Dylon");
+  Pax* pax2 = new Pax("Dolly", "Parton");
+  Pax* pax3 = new Pax("Johnny", "Cash");
 
-    root->Child()->add(pax2); // pax2 as child of pax1
-    pax2->Child()->add(pax3); // pax3 as child of pax2
+  root->Child()->add(pax2); // pax2 as child of pax1
+  pax2->Child()->add(pax3); // pax3 as child of pax2
 
-    Pax* pax = root->Child("Dolly")->Child("Johnny");
+  Pax* pax = root->Child("Dolly")->Child("Johnny");
 
-    pax->Tag("John"); // updating Tag
-    pax->Val("Denver"); // updating Value
+  pax->Tag("John"); // updating Tag
+  pax->Val("Denver"); // updating Value
 
-    Pax* pax2_ = root->Child("Dolly"); // remeber Dolly knows Johnny
+  Pax* pax2_ = root->Child("Dolly"); // remeber Dolly knows Johnny
 
-    Pax* pax3_ = pax2->Child("Johnny"); // exists
-    std::string tag = pax3_.Tag(); // John was stored
-    std::string val = pax3_.Val(); // Denver was stored
+  Pax* pax3_ = pax2->Child("Johnny"); // exists
+  std::string tag = pax3_.Tag(); // John was stored
+  std::string val = pax3_.Val(); // Denver was stored
 
-    // and 
+  // and 
 
-    Pax* pax3__ = pax2->Child("John"); // null pointer
+  Pax* pax3__ = pax2->Child("John"); // null pointer
 
-    delete root; // runs recursively ..
+  delete root; // runs recursively ..
 ```
 
 This leads to the fact, that if one wants to change data on treed _Pax_,
@@ -218,19 +214,19 @@ For modern CMake version install _CMake_ and [Ninja](https://ninja-build.org/).
 
 For generating the _ninja build files_ with _CMake_ and building binaries via _ninja_:
 ```bash
-./build.sh
+  ./build.sh
 ```
 
 If you want to use classical make, you can edit the _build.sh_ bash script easily.
 
 For cleaning up all compiled objects:
 ```bash
-./clean.sh
+  ./clean.sh
 ```
 
 To remove the build folder:
 ```bash
-rm -rf build/
+  rm -rf build/
 ```
 
 ## Closings
