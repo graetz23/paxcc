@@ -5,7 +5,7 @@ _A pretty simple C++ Data Passenger_; PAX is an airborne code or peace in latin.
 ## Introduction
 
 The PAX class is a C++ written _double linked object tree_.
-It is an enabler for parsing any kind of - hierarchically - structured data; e.g. XML.
+It is an enabler for parsing any kind of - hierarchically - structured data; e.g. _extensible markup language_ (XML).
 A simple SAX like interface is available for parsing to a PAX object tree.
 
 A _Pax_ objects can:
@@ -13,10 +13,10 @@ A _Pax_ objects can:
   - store a _value_ as std::string,
   - add multiple _attribute_ as a pair of _tag_ and _value_,
   - add multiple _Pax_ object as _children_ of the current,
-  - generate themselves to _extensible markup language (XML)_,
-  - write themselves to _XML_ using the _Writer_, 
+  - generate themselves recursively to XML,
+  - write themselves to XML using the _Writer_,
   - parse themselves by XML to a _double linked object tree_ using the _Reader_.
-
+  
 PAXCC is written in C++11 currently (may switch to C++98).
 There are not further dependencies to other libraries or framework.
 It is ideal for standalone hierarchical structured data handling using XML.
