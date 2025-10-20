@@ -11,13 +11,14 @@ A simple SAX like interface is available for parsing to a PAX object tree.
 A _Pax_ objects can take:
   - a _tag_ name as std::string,
   - a _value_ as std::string,
-  - any _attributes_ as pairs of _tag_ and _value,
-  - any _Pax_ object as _children_ of the current,
+  - multiple _attribute_ as a pair of _tag_ and _value_,
+  - multiple _Pax_ object as _children_ of the current,
   - may generate themselves to _extensible markup language (XML)_.
+  - may parse XML to a _double linked object tree_.
 
-Therefore, the _Pax_ objects allow for building multi-dimensional object trees
-that are infinitively deep. Any _Pax_ can reproduce itself recusively to XML,
-JSON (to follow), and protobuf (to follow).
+PAXCC is written in C++11 currently (may switch to C++98).
+There are not further dependencies to other libraries or framework.
+It is ideal for standalone hierarchical structured data handling using XML.
 
 ## HowTo
 
