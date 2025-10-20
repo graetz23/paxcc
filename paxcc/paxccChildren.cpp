@@ -33,7 +33,7 @@ namespace PAXCC
 
     Children::Children(Pax* dad)
     {
-        this->dad(dad);
+        this->root(dad);
     } // constructor
 
     Children::~Children()

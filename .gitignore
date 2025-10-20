@@ -1,6 +1,7 @@
 # project-oriented
 paxcc_example
 build/
+.build/
 doc/
 example*
 

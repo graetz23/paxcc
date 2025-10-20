@@ -43,6 +43,8 @@ namespace PAXCC
         Children *_children;     // member
         Attributes *_attributes; // member
 
+        Pax* _dad; // member
+
     protected:
     public:
         Pax(void);                             // constructor
@@ -51,25 +53,26 @@ namespace PAXCC
         Pax(Pax *pax);                         // constructor
         virtual ~Pax(void);                    // destructor
 
-        std::string Tag(void);     // method
+        std::string Tag(void); // method
         void Tag(std::string tag); // method
-        bool hasTag(void);         // method
+        bool hasTag(void); // method
 
-        std::string Val(void);     // method
+        std::string Val(void); // method
         void Val(std::string val); // method
-        bool hasVal(void);         // method
+        bool hasVal(void); // method
 
-        Attributes *Attrib(void);     // method
+        Attributes *Attrib(void); // method
         Pax *Attrib(std::string tag); // method
-        bool hasAttrib(void);         // method
+        bool hasAttrib(void); // method
 
-        Children *Child(void);       // method
+        Children *Child(void); // method
         Pax *Child(std::string tag); // method
-        bool hasChild();             // method
+        bool hasChild(); // method
         size_t cntChilds(); // method
         std::vector<Pax *> Childs(); // method
 
-        Pax *Dad(void);       // method
+        Pax *Dad(void); // method
+        void Dad(Pax* dad);// method
 
         std::string XML(void); // method
         std::vector<std::string> XML_lines(uint indent = 0); // method

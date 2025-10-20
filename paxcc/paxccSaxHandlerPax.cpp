@@ -66,21 +66,51 @@ HandlerPax::startDoc( void ) {
 void // called for each starting XML tag
 HandlerPax::startTag( Str tag ) {
 
-  for( int t = 0; t < _level; t++ ) // print some white spaces
-    std::cout << " " << std::flush;
+  bool indent = false; // should we increase indentation
 
-  if( _xmlTool.check4Starting( tag ) ) { // check for being '< .. >'
-
-    _level++;  // increase indentation
+  if(_xmlTool.check4Header( tag ) ) {
+    // TODO handle XML header here ..
+    Str tag_ = _xmlTool.removeSpikes(tag); // remove '<' and '>'
     
-    Pax* pax = _factory->produce( tag ); // create new Pax
+    Pax* pax = _factory->produce( tag_ ); // create new Pax
+    
+    _current->Child()->add( pax ); // add to root's children
+  } else if( _xmlTool.check4Comment( tag ) ) {
+    // TODO handle comments here ..
+      Str val = _xmlTool.cleanComment( tag );
+      Pax* pax = _factory->produce( "#comment", val ); // create new Pax
+    
+      _current->Child()->add( pax ); // add to root's children
+      _current = pax; // set current to new Pax
+  } else if( _xmlTool.check4CData( tag ) ) {
+    // TODO handle special tags here ..
+      Str val = _xmlTool.cleanCData( tag );
+      Pax* pax = _factory->produce( "#cdata", val ); // create new Pax
+    
+      _current->Child()->add( pax ); // add to root's children
+      _current = pax; // set current to new Pax
+  } else {
+    // TODO explode the sting from <tag attrib1="val1" attrib2="val2" .. > to objects
+    Str tag_ = _xmlTool.removeSpikes(tag); // remove '<' and '>'
+    
+    Pax* pax = _factory->produce( tag_ ); // create new Pax
     
     _current->Child()->add( pax ); // add to root's children
     _current = pax; // set current to new Pax
+
+    indent = true; // increase indentation
+
+} // if
   
-  } // if
   
+  for( int t = 0; t < _level; t++ ) // print some white spaces
+    std::cout << " " << std::flush;
   std::cout << tag << std::endl << std::flush;
+
+  if(indent) {
+    _level += _PAXCC_INDENT_; // increase indentation
+  } // if
+
 
 } // HandlerPax::startNode
 
@@ -89,11 +119,10 @@ HandlerPax::startTag( Str tag ) {
 void // called for each text value in XML
 HandlerPax::characters( Str txt ) {
 
-  for( int t = 0; t < _level; t++ ) // print some white spaces
-    std::cout << " " << std::flush;
-
   _current->Val( txt ); // set value of current Pax
 
+  for( int t = 0; t < _level; t++ ) // print some white spaces
+    std::cout << " " << std::flush;
   std::cout << txt << std::endl << std::flush;
 
 } // HandlerPax::characters
@@ -103,13 +132,15 @@ HandlerPax::characters( Str txt ) {
 void // called for each ending XML tag
 HandlerPax::endTag( Str tag ) {
 
-  _level--; // reduce indentation
+  _level -= _PAXCC_INDENT_; // reduce indentation
+  if(_level < 0) 
+    _level = 0;
+
+  Pax* dad = _current->Dad(); // get parent Pax
+  _current = dad; // set current to parent Pax
 
   for( int t = 0; t < _level; t++ ) // print some white spaces
     std::cout << " " << std::flush;
-
-  _current = _current->Dad(); // set current to parent Pax
-
   std::cout << tag << std::endl << std::flush;
 
 } // HandlerPax::endNode

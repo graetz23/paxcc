@@ -33,7 +33,7 @@ namespace PAXCC
 
     Attributes::Attributes(Pax* dad)
     {
-        this->dad(dad);
+        this->root(dad);
     } // constructor
 
     Attributes::~Attributes()
