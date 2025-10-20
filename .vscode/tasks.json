@@ -2,9 +2,11 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: g++ Aktive Datei kompilieren",
+            "label": "C/C++: g++ compiling",
             "command": "/usr/bin/g++",
             "args": [
+                "-Zi",
+                "-Fe",
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",

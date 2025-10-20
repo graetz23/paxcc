@@ -39,7 +39,7 @@ XmlParser::XmlParser( void ) {
   _strTool = new SYS::StrTool( ); // create object for string tool
   _xmlTool = new SYS::XmlTool( ); // create object for xml tool
   if( _xmlHandler == 0 )
-    _xmlHandler = new XmlHandler( true ); // if this is used write to console
+    _xmlHandler = new XmlHandler( ); // if this is used write to console
   _init( ); // initialize all members
 } // XmlParser
 

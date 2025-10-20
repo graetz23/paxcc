@@ -142,4 +142,16 @@ namespace PAXCC
         return vec;
     } // method
 
+    Pax*
+    SubSet::dad(void)
+    {
+        return _dad;
+    } // method
+
+    void
+    SubSet::dad(Pax* dad)
+    {
+        _dad = dad;
+    } // method
+
 } // namespace

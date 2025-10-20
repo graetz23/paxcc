@@ -24,72 +24,102 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./paxccSysXmlHandler.h" // header
+#include "./paxccSaxHandler.h" // header
+#include "./paxccSysException.h" // base class for exceptions in SYS::
+#include "./paxccSysFailure.h" // exception class for marking failures
+#include "./paxccSysError.h" // exception class for marking errors
+
+/******************************************************************************/
+
+#ifdef _MSC_VER
+#pragma warning( disable:4100 ) // for unused objects
+#endif // _MSC_VER // _WIN32
 
 /******************************************************************************/
 
 namespace PAXCC {
 
-namespace SYS {
+namespace SAX {
 
 /******************************************************************************/
 
 /// constructor
-XmlHandler::XmlHandler( void ) {
-} // XmlHandler
+Handler::Handler( void ) {
+  _isTalking = true; // std::cout or throw an exception if this is used
+  //_isTalking = false; // std::cout or throw an exception if this is used
+} // Handler
 
 /// destructor
-XmlHandler::~XmlHandler( void ) {
-} // ~XmlHandler
+Handler::~Handler( void ) {
+} // ~Handler
 
 /******************************************************************************/
 
 void // called before reading document
-XmlHandler::startDoc( void ) {
+Handler::startDoc( void ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  if( _isTalking ) {
+    std::cout << std::endl << std::endl;
+    std::cout << "PAXCC::SYS::XmlParser starts reading document" << std::endl;
+  } else {
+    throw SYS::Failure( "SYS::XmlHandler - do not use base handler class" );
+  } // if _istalking
 
-} // XmlHandler::startDocument
+} // Handler::startDocument
 
 /******************************************************************************/
 
 void // called for each starting XML tag
-XmlHandler::startTag( Str tag ) {
+Handler::startTag( Str tag ) {
 
-    throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  if( _isTalking )
+    std::cout << tag << std::endl;
+  else
+    throw SYS::Failure( "SYS::XmlHandler - do not use base handler class" );
 
-} // XmlHandler::startNode
+} // Handler::startNode
 
 /******************************************************************************/
 
 void // called for each text value in XML
-XmlHandler::characters( Str txt ) {
+Handler::characters( Str txt ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  if( _isTalking )
+    std::cout << txt << std::endl;
+  else
+    throw SYS::Failure( "SYS::XmlHandler - do not use base handler class" );
 
-} // XmlHandler::characters
+} // Handler::characters
 
 /******************************************************************************/
 
 void // called for each ending XML tag
-XmlHandler::endTag( Str tag ) {
+Handler::endTag( Str tag ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  if( _isTalking )
+    std::cout << tag << std::endl;
+  else
+    throw SYS::Failure( "SYS::XmlHandler - do not use base handler class" );
 
-} // XmlHandler::endNode
+} // Handler::endNode
 
 /******************************************************************************/
 
 void // called after reading document
-XmlHandler::endDoc( void ) {
+Handler::endDoc( void ) {
+  
+  if( _isTalking ) {
+    std::cout << "PAXCC::SYS::XmlParser ends reading document";
+    std::cout << std::endl << std::endl;
+  } else {
+    throw SYS::Failure( "SYS::XmlHandler - do not use base handler class" );
+  } // if _istalking
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
-
-} // XmlHandler::endDocument
+} // Handler::endDocument
 
 /******************************************************************************/
 
-} // namespace SYS
+} // namespace SAX
 
 } // namespace PAXCC
 

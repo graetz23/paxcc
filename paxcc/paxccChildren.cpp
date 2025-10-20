@@ -31,8 +31,9 @@ namespace PAXCC
 {
     class Pax; // we link em up ..
 
-    Children::Children()
+    Children::Children(Pax* dad)
     {
+        this->dad(dad);
     } // constructor
 
     Children::~Children()

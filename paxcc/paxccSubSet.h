@@ -39,6 +39,8 @@ namespace PAXCC
     private:
         PaxMap<Pax *> *_map; // member
 
+        Pax* _dad; // member
+
     protected:
     public:
         SubSet(void);          // constructor
@@ -56,6 +58,9 @@ namespace PAXCC
         size_t cnt(void);                // method
         std::vector<std::string> tags(); // method
         std::vector<Pax *> vals();       // method
+
+        Pax* dad(void);        // method
+        void dad(Pax* dad); // method
 
     }; // class
 

@@ -24,73 +24,61 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./paxccSysXmlHandler.h" // header
+#ifndef __paxccSaxHandler_h__
+#define __paxccSaxHandler_h__
+
+/******************************************************************************/
+
+#include "./paxccDefines.h" // PAXCC::
+#include "./paxccSys.h" // SYS::
+#include "./paxccSysXmlHandler.h" // base class
 
 /******************************************************************************/
 
 namespace PAXCC {
 
-namespace SYS {
+namespace SAX {
 
 /******************************************************************************/
 
-/// constructor
-XmlHandler::XmlHandler( void ) {
-} // XmlHandler
-
-/// destructor
-XmlHandler::~XmlHandler( void ) {
-} // ~XmlHandler
+#ifdef _PAXCC_DEBUG_
+#define _PAXCC_DEBUG_SAX_Handler_
+#endif
 
 /******************************************************************************/
 
-void // called before reading document
-XmlHandler::startDoc( void ) {
+class /// base class for all handlers 2 be implemented
+Handler: public SYS::XmlHandler {
+  public:
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+    Handler( void ); /// constructor
+    virtual ~Handler( void ); /// destructor
 
-} // XmlHandler::startDocument
+    virtual void startDoc( void ); /// called before reading document
 
-/******************************************************************************/
+    virtual void startTag( Str tag ); /// called for each starting XML tag
 
-void // called for each starting XML tag
-XmlHandler::startTag( Str tag ) {
+    virtual void characters( Str txt ); /// called for each text value in XML
 
-    throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+    virtual void endTag( Str tag ); /// called for each ending XML tag
 
-} // XmlHandler::startNode
+    virtual void endDoc( void ); /// called after reading document
 
-/******************************************************************************/
+  private:
 
-void // called for each text value in XML
-XmlHandler::characters( Str txt ) {
+    bool _isTalking; /// std::cout or throw an exception if this handler is used
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
-
-} // XmlHandler::characters
-
-/******************************************************************************/
-
-void // called for each ending XML tag
-XmlHandler::endTag( Str tag ) {
-
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
-
-} // XmlHandler::endNode
+};
+// class Handler
 
 /******************************************************************************/
 
-void // called after reading document
-XmlHandler::endDoc( void ) {
-
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
-
-} // XmlHandler::endDocument
-
-/******************************************************************************/
-
-} // namespace SYS
+}// namespace SAX
 
 } // namespace PAXCC
+
+/******************************************************************************/
+
+#endif // __paxccSaxHandler_h__
 
 /******************************************************************************/

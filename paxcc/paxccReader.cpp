@@ -25,14 +25,19 @@
  */
 
  #include "./paxccReader.h"
-#include "./paxccSysXmlHandler.h" // SYS::XmlHandler
+#include "./paxccSysXmlParser.h" // SAX::Handler
+#include "./paxccSaxHandler.h" // SAX::Handler
+#include "./paxccSaxHandlerExample.h" // SAX::HandlerExample
+#include "./paxccSaxHandlerPax.h" // SAX::HandlerPax
 
 namespace PAXCC
 {
 
     PaxReader::PaxReader(void)
     {
-        _parser = new SYS::XmlParser( new SYS::XmlHandler( true ) );
+        _paxHandler = new SAX::HandlerPax();
+
+        _parser = new SYS::XmlParser( _paxHandler );
     } // constructor
 
     PaxReader::~PaxReader(void)
@@ -40,11 +45,13 @@ namespace PAXCC
         delete _parser;
     } // destructor
 
-    void PaxReader::read(const SYS::Str fileName)
+    Pax* PaxReader::read(const Str fileName)
     {
         std::cout << "PaxReader::read(): Reading file '" << fileName << "' ..." << std::endl;
         // use the XML parser to read the file
         _parser->parse(fileName);
+        Pax* root = _paxHandler->Root();
+        return root;
     } // read
 
 } // namespace PAXCC

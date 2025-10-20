@@ -210,36 +210,40 @@ above, deleting the _Pax_ from object tree, changing it, and adding it again.
 
 ## Building the PAXCC
 
-For building PAXCC two build tools are available.
-
-### Static Make
-
-For the static Makefile using g++:
-```bash
-make
-```
-For cleaning up:
-```bash
-make clean
-```
+For building PAXCC the [CMake - Software Build System](https://cmake.org/) is available.
 
 ### Cmake Build Tooling
 
-For modern CMake version install _CMake_ and _ninja_.
-For generating ninja build files and building via ninja:
+For modern CMake version install _CMake_ and [Ninja](https://ninja-build.org/).
+
+For generating the _ninja build files_ with _CMake_ and building binaries via _ninja_:
 ```bash
 ./build.sh
 ```
-For cleaning up, remove the generated _build_ directory:
+
+If you want to use classical make, you can edit the _build.sh_ bash script easily.
+
+For cleaning up all compiled objects:
+```bash
+./clean.sh
+```
+
+To remove the build folder:
 ```bash
 rm -rf build/
 ```
 
+## Closings
+
+Have fun :-)
+
 ## ChangeLog
 
+- 251020 Extending CMake build configuration to settle C++ version.
+         Switching to C++11, due to unordered_map usage yet: target C++03 or C++98.
+         Adding double linked object tree feature, having a parent each.
 - 251019 Adding CMake build configuration.
-         Adding C++98 XML parser withou any dependencies.
-
+         Adding some kind of SAX C++98 XML parser without any dependencies.
 - 250202 Adding _Visual Studio Code_ debugging configuration using g++ and gdb.
          Adding _PaxMap_ a sequence ordered hash map as template implementation.
          Adding _Pax_ keeping _Children_ and _Attributes_ that have _Pax_ types

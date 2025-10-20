@@ -23,73 +23,117 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-#include "./paxccSysXmlHandler.h" // header
+#include "./paxccSaxHandlerPax.h" // header
 
 /******************************************************************************/
 
 namespace PAXCC {
 
-namespace SYS {
+namespace SAX {
 
 /******************************************************************************/
 
 /// constructor
-XmlHandler::XmlHandler( void ) {
-} // XmlHandler
+HandlerPax::HandlerPax( void ) {
+
+  _level = 0;
+  _current = 0; /// C++98 C++03 C++11
+  //_current = nullptr; /// modern
+
+  // TODO take this from some global static later for abstract factoy pattern
+  _factory = new Factory(); // creating standard factory
+
+} // HandlerPax
 
 /// destructor
-XmlHandler::~XmlHandler( void ) {
-} // ~XmlHandler
+HandlerPax::~HandlerPax( void ) {
+} // ~HandlerPax
 
 /******************************************************************************/
 
 void // called before reading document
-XmlHandler::startDoc( void ) {
+HandlerPax::startDoc( void ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  std::cout << "PAXCC::SAX::HandlerPax starts reading document" << std::endl;
 
-} // XmlHandler::startDocument
+  _root = _factory->produce( "root" ); // create root object
+  _current = _root; // set base pointer to root object
+
+} // HandlerPax::startDocument
 
 /******************************************************************************/
 
 void // called for each starting XML tag
-XmlHandler::startTag( Str tag ) {
+HandlerPax::startTag( Str tag ) {
 
-    throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  for( int t = 0; t < _level; t++ ) // print some white spaces
+    std::cout << " " << std::flush;
 
-} // XmlHandler::startNode
+  if( _xmlTool.check4Starting( tag ) ) { // check for being '< .. >'
+
+    _level++;  // increase indentation
+    
+    Pax* pax = _factory->produce( tag ); // create new Pax
+    
+    _current->Child()->add( pax ); // add to root's children
+    _current = pax; // set current to new Pax
+  
+  } // if
+  
+  std::cout << tag << std::endl << std::flush;
+
+} // HandlerPax::startNode
 
 /******************************************************************************/
 
 void // called for each text value in XML
-XmlHandler::characters( Str txt ) {
+HandlerPax::characters( Str txt ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  for( int t = 0; t < _level; t++ ) // print some white spaces
+    std::cout << " " << std::flush;
 
-} // XmlHandler::characters
+  _current->Val( txt ); // set value of current Pax
+
+  std::cout << txt << std::endl << std::flush;
+
+} // HandlerPax::characters
 
 /******************************************************************************/
 
 void // called for each ending XML tag
-XmlHandler::endTag( Str tag ) {
+HandlerPax::endTag( Str tag ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  _level--; // reduce indentation
 
-} // XmlHandler::endNode
+  for( int t = 0; t < _level; t++ ) // print some white spaces
+    std::cout << " " << std::flush;
+
+  _current = _current->Dad(); // set current to parent Pax
+
+  std::cout << tag << std::endl << std::flush;
+
+} // HandlerPax::endNode
 
 /******************************************************************************/
 
 void // called after reading document
-XmlHandler::endDoc( void ) {
+HandlerPax::endDoc( void ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  std::cout << "PAXCC::SAX::HandlerPax ends reading document" << std::endl
+    << std::flush;
 
-} // XmlHandler::endDocument
+} // HandlerPax::endDocument
 
 /******************************************************************************/
 
-} // namespace SYS
+Pax* // get root Pax object
+HandlerPax::Root( void ) {
+  return _root;
+} // HandlerPax::Root 
+
+/******************************************************************************/
+
+} // namespace SAX
 
 } // namespace PAXCC
 

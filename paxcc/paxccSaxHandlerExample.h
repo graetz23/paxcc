@@ -24,73 +24,57 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./paxccSysXmlHandler.h" // header
+#ifndef __paxccSaxHandlerExample_h__
+#define __paxccSaxHandlerExample_h__
 
 /******************************************************************************/
+
+#include "./paxccSaxHandler.h" // for converting strings 2 objects
 
 namespace PAXCC {
 
-namespace SYS {
+namespace SAX {
 
 /******************************************************************************/
 
-/// constructor
-XmlHandler::XmlHandler( void ) {
-} // XmlHandler
-
-/// destructor
-XmlHandler::~XmlHandler( void ) {
-} // ~XmlHandler
+#ifdef _PAXCC_DEBUG_
+#define _PAXCC_DEBUG_SAX_HandlerExample_
+#endif
 
 /******************************************************************************/
 
-void // called before reading document
-XmlHandler::startDoc( void ) {
+class /// example for an handler pushing writing data 2 console
+HandlerExample: public Handler {
+  public:
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+    HandlerExample( void ); /// constructor
+    virtual ~HandlerExample( void ); /// destructor
 
-} // XmlHandler::startDocument
+    void startDoc( void ); /// called before reading document
 
-/******************************************************************************/
+    void startTag( Str tag ); /// called for each starting XML tag
 
-void // called for each starting XML tag
-XmlHandler::startTag( Str tag ) {
+    void characters( Str txt ); /// called for each text value in XML
 
-    throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+    void endTag( Str tag ); /// called for each ending XML tag
 
-} // XmlHandler::startNode
+    void endDoc( void ); /// called after reading document
 
-/******************************************************************************/
+  private:
 
-void // called for each text value in XML
-XmlHandler::characters( Str txt ) {
+    int _level; // count level in XML structure and print tabulators for it
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+    SYS::XmlTool _xmlTool; // recognizing starting < .. > and ending </ .. > tags
 
-} // XmlHandler::characters
-
-/******************************************************************************/
-
-void // called for each ending XML tag
-XmlHandler::endTag( Str tag ) {
-
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
-
-} // XmlHandler::endNode
+};
+// class HandlerExample
 
 /******************************************************************************/
 
-void // called after reading document
-XmlHandler::endDoc( void ) {
-
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
-
-} // XmlHandler::endDocument
-
-/******************************************************************************/
-
-} // namespace SYS
+}// namespace SAX
 
 } // namespace PAXCC
 
 /******************************************************************************/
+
+#endif // __paxccSaxHandlerExample_h__

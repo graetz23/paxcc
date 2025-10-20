@@ -79,10 +79,11 @@ int main(int arc, char **argv)
   delete pax1; // working recursively well on first run ..
 
   PaxReader reader;
-  reader.read("example_output.xml"); // read from file
-  // Pax* root = reader.read("example_output.xml"); // read from file
-  // std::string xml__ = root->XML();  // generate XML from object tree ..
-  // std::cout << xml__ << std::flush; // print out
+  // reader.read("example_output.xml"); // read from file
+  Pax* root = reader.read("example_output.xml"); // read from file
+  std::cout << std::endl << std::endl; // print out
+  std::string xml__ = root->XML();  // generate XML from object tree ..
+  std::cout << xml__ << std::endl; // print out
 
   return 0;
 } // main

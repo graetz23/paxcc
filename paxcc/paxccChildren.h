@@ -37,7 +37,7 @@ namespace PAXCC
     private:
     protected:
     public:
-        Children(void);          // constructor
+        Children(Pax* dad);          // constructor
         virtual ~Children(void); // destructor
 
     }; // class

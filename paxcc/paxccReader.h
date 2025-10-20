@@ -27,7 +27,9 @@
 #ifndef __PaxReader_h__
 #define __PaxReader_h__
 
+#include "./paxccDefines.h" // include the xml tooling libary
 #include "./paxccSys.h" // include the xml tooling libary
+#include "./paxccSaxHandlerPax.h" // include the xml tooling libary
 
 namespace PAXCC
 {
@@ -36,6 +38,7 @@ namespace PAXCC
 
         protected:
         
+        SAX::HandlerPax* _paxHandler; /// XML handler instance
         SYS::XmlParser* _parser; /// XML parser instance
 
         public:
@@ -43,7 +46,7 @@ namespace PAXCC
         PaxReader(void); // constructor
         virtual ~PaxReader(void); // destructor
 
-        void read(const SYS::Str fileName); // read from file
+        Pax* read(const Str fileName); // read from file
 
     }; // class
 

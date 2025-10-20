@@ -24,73 +24,71 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#include "./paxccSysXmlHandler.h" // header
+#ifndef __paxccSaxHandlerPax_h__
+#define __paxccSaxHandlerPax_h__
 
 /******************************************************************************/
+
+#include "./paxccSaxHandler.h" // for converting strings 2 objects
+#include "./paxccPax.h" // Pax object tree
+#include "./paxccFactory.h" // Pax object tree factory
 
 namespace PAXCC {
 
-namespace SYS {
+namespace SAX {
 
 /******************************************************************************/
 
-/// constructor
-XmlHandler::XmlHandler( void ) {
-} // XmlHandler
-
-/// destructor
-XmlHandler::~XmlHandler( void ) {
-} // ~XmlHandler
+#define _PAXCC_VERSION_SAX_HandlerPax_ 1.00 // 20150101
+#ifdef _PAXCC_DEBUG_
+#define _PAXCC_DEBUG_SAX_HandlerPax_
+#endif
 
 /******************************************************************************/
 
-void // called before reading document
-XmlHandler::startDoc( void ) {
+class /// example for an handler pushing writing data 2 console
+HandlerPax: public Handler {
+  public:
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+    HandlerPax( void ); /// constructor
+    virtual ~HandlerPax( void ); /// destructor
 
-} // XmlHandler::startDocument
+    void startDoc( void ); /// called before reading document
 
-/******************************************************************************/
+    void startTag( Str tag ); /// called for each starting XML tag
 
-void // called for each starting XML tag
-XmlHandler::startTag( Str tag ) {
+    void characters( Str txt ); /// called for each text value in XML
 
-    throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+    void endTag( Str tag ); /// called for each ending XML tag
 
-} // XmlHandler::startNode
+    void endDoc( void ); /// called after reading document
 
-/******************************************************************************/
+    Pax* Root( void ); /// get root Pax object
 
-void // called for each text value in XML
-XmlHandler::characters( Str txt ) {
+  protected:
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+    int _level; // count level in XML structure and print tabulators for it
 
-} // XmlHandler::characters
+    Pax* _root; /// root object of PAX tree structure aka composite pattern
 
-/******************************************************************************/
+    Factory* _factory; /// factory for creating and copying Pax objects
 
-void // called for each ending XML tag
-XmlHandler::endTag( Str tag ) {
+    SYS::XmlTool _xmlTool; /// tool class for std::string manipulations
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+    SYS::StrTool _strTool; /// tool class for XML tag & text manipulations
 
-} // XmlHandler::endNode
+  private:
 
-/******************************************************************************/
+    Pax* _current; /// current Pax object being processed
 
-void // called after reading document
-XmlHandler::endDoc( void ) {
-
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
-
-} // XmlHandler::endDocument
+}; // class
 
 /******************************************************************************/
 
-} // namespace SYS
+}// namespace SAX
 
 } // namespace PAXCC
 
 /******************************************************************************/
+
+#endif // __paxccSaxHandlerPax_h__

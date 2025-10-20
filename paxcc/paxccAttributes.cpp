@@ -31,8 +31,9 @@ namespace PAXCC
 {
     class Pax; // we link em up ..
 
-    Attributes::Attributes()
+    Attributes::Attributes(Pax* dad)
     {
+        this->dad(dad);
     } // constructor
 
     Attributes::~Attributes()

@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -24,26 +24,46 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef __Attributes_h__
-#define __Attributes_h__
+ #ifndef __paxccFactory_h__
+ #define __paxccFactory_h__
 
-#include "./paxccSubSet.h"
+/******************************************************************************/
 
-namespace PAXCC
-{
-    class Attributes : public SubSet
-    {
+#include "./paxccDefines.h" // Pax general defines
+#include "./paxccPax.h" // Pax object tree
 
-    private:
-    protected:
-    public:
-        Attributes(Pax* dad);          // constructor
-        virtual ~Attributes(void); // destructor
+/******************************************************************************/
 
-        std::string XML(); // method
+namespace PAXCC {
 
-    }; // class
+/******************************************************************************/
 
-} // namespace
+#ifdef _PAXCC_DEBUG_
+    #define _PAXCC_DEBUG_Factory_
+    #endif
 
-#endif // __Attributes_h__
+/******************************************************************************/
+
+class /// factory class creating Pax objects
+Factory {
+    public:   
+
+    Factory( void ); /// constructor
+    virtual ~Factory( void ); /// destructor
+
+    virtual Pax* produce( Str tag ); /// create object by tag name
+
+    virtual Pax* produce( Str tag, Str val); /// create object by tag and value
+
+    virtual Pax* produce( Pax* pax ); /// create object by copying given object          
+
+}; // class Factory
+
+/******************************************************************************/
+
+} // namespace PAXCC
+
+/******************************************************************************/
+
+#endif // __paxccFactory_h__
+

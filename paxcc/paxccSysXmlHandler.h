@@ -54,7 +54,6 @@ XmlHandler {
   public:
 
     XmlHandler( void ); /// constructor
-    XmlHandler( bool isTalking ); /// constructor
     virtual ~XmlHandler( void ); /// destructor
 
     virtual void startDoc( void ); /// called before reading document
@@ -66,10 +65,6 @@ XmlHandler {
     virtual void endTag( Str tag ); /// called for each ending XML tag
 
     virtual void endDoc( void ); /// called after reading document
-
-  private:
-
-    bool _isTalking; /// std::cout or throw an exception if this handler is used
 
 };
 // class XmlHandler

@@ -24,3 +24,45 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#include "./paxccFactory.h" // header
+
+/******************************************************************************/
+
+namespace PAXCC {
+
+/******************************************************************************/
+
+/// constructor
+Factory::Factory( void ) {
+} // Factory
+
+/// destructor
+Factory::~Factory( void ) {
+} // ~Factory   
+
+/******************************************************************************/
+
+Pax* /// create object by tag name
+Factory::produce( Str tag ) {
+    return new Pax( tag );
+} // Factory::produce   
+
+/******************************************************************************/
+
+Pax* /// create object by tag and value
+Factory::produce( Str tag, Str val) {
+    return new Pax( tag, val );
+} // Factory::produce
+
+/******************************************************************************/
+
+Pax* /// create object by copying given object          
+Factory::produce( Pax* pax ) {
+    return new Pax( *pax );
+} // Factory::produce   
+
+/******************************************************************************/
+
+} // namespace PAXCC
+
+/******************************************************************************/

@@ -69,6 +69,8 @@ namespace PAXCC
         size_t cntChilds(); // method
         std::vector<Pax *> Childs(); // method
 
+        Pax *Dad(void);       // method
+
         std::string XML(void); // method
         std::vector<std::string> XML_lines(uint indent = 0); // method
 

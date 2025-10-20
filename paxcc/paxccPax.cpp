@@ -31,24 +31,24 @@ namespace PAXCC
 
     Pax::Pax(void)
     {
-        _attributes = new Attributes();
-        _children = new Children();
+        _attributes = new Attributes(this);
+        _children = new Children(this);
         _tag.clear();
         _val.clear();
     } // constructor
 
     Pax::Pax(std::string tag)
     {
-        _attributes = new Attributes();
-        _children = new Children();
+        _attributes = new Attributes(this);
+        _children = new Children(this);
         _tag = tag;
         _val.clear();
     } // constructor
 
     Pax::Pax(std::string tag, std::string val)
     {
-        _attributes = new Attributes();
-        _children = new Children();
+        _attributes = new Attributes(this);
+        _children = new Children(this);
         _tag = tag;
         _val = val;
     } // constructor
@@ -175,6 +175,12 @@ namespace PAXCC
     {
         std::vector<Pax *> vec = Child()->vals();
         return vec;
+    } // method
+
+    Pax *
+    Pax::Dad(void)
+    {
+        return Child()->dad();
     } // method
 
     std::string Pax::XML(void)

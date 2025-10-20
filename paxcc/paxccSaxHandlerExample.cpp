@@ -23,73 +23,91 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-#include "./paxccSysXmlHandler.h" // header
+#include "./paxccSaxHandlerExample.h" // header
 
 /******************************************************************************/
 
 namespace PAXCC {
 
-namespace SYS {
+namespace SAX {
 
 /******************************************************************************/
 
 /// constructor
-XmlHandler::XmlHandler( void ) {
-} // XmlHandler
+HandlerExample::HandlerExample( void ) {
+
+  _level = 0;
+
+} // HandlerExample
 
 /// destructor
-XmlHandler::~XmlHandler( void ) {
-} // ~XmlHandler
+HandlerExample::~HandlerExample( void ) {
+} // ~HandlerExample
 
 /******************************************************************************/
 
 void // called before reading document
-XmlHandler::startDoc( void ) {
+HandlerExample::startDoc( void ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  std::cout << "PAXCC::SAX::HandlerExample starts reading document" << std::endl
+    << std::flush;
 
-} // XmlHandler::startDocument
+} // HandlerExample::startDocument
 
 /******************************************************************************/
 
 void // called for each starting XML tag
-XmlHandler::startTag( Str tag ) {
+HandlerExample::startTag( Str tag ) {
 
-    throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  for( int t = 0; t < _level; t++ ) // print some white spaces
+    std::cout << " " << std::flush;
 
-} // XmlHandler::startNode
+  if( _xmlTool.check4Starting( tag ) ) // check for being '< .. >'
+    _level++;  // increase indentation
+
+  std::cout << tag << std::endl;
+
+} // HandlerExample::startNode
 
 /******************************************************************************/
 
 void // called for each text value in XML
-XmlHandler::characters( Str txt ) {
+HandlerExample::characters( Str txt ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  for( int t = 0; t < _level; t++ ) // print some white spaces
+    std::cout << " " << std::flush;
 
-} // XmlHandler::characters
+  std::cout << txt << std::endl;
+
+} // HandlerExample::characters
 
 /******************************************************************************/
 
 void // called for each ending XML tag
-XmlHandler::endTag( Str tag ) {
+HandlerExample::endTag( Str tag ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  _level--; // reduce indentation
 
-} // XmlHandler::endNode
+  for( int t = 0; t < _level; t++ ) // print some white spaces
+    std::cout << " " << std::flush;
+
+  std::cout << tag << std::endl;
+
+} // HandlerExample::endNode
 
 /******************************************************************************/
 
 void // called after reading document
-XmlHandler::endDoc( void ) {
+HandlerExample::endDoc( void ) {
 
-  throw SYS::Failure( "SAX::Handler - do not use base handler class" );
+  std::cout << "PAXCC::SAX::HandlerExample ends reading document" << std::endl
+    << std::flush;
 
-} // XmlHandler::endDocument
+} // HandlerExample::endDocument
 
 /******************************************************************************/
 
-} // namespace SYS
+} // namespace SAX
 
 } // namespace PAXCC
 
