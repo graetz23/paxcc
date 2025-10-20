@@ -39,7 +39,7 @@ namespace PAXCC
     private:
         PaxMap<Pax *> *_map; // member
 
-        Pax* _dad; // member
+        Pax* _root; // member
 
     protected:
     public:
@@ -59,8 +59,8 @@ namespace PAXCC
         std::vector<std::string> tags(); // method
         std::vector<Pax *> vals();       // method
 
-        Pax* dad(void);        // method
-        void dad(Pax* dad); // method
+        Pax* root(void);        // method
+        void root(Pax* dad); // method
 
     }; // class
 

@@ -76,6 +76,7 @@ namespace PAXCC
             tag.append(" ");
             tag.append(next);
         } // if
+        pax->Dad(root()); // set dad pointer
         bool wasAdded = _map->add(tag, pax);
         return wasAdded;
     } // method
@@ -85,6 +86,7 @@ namespace PAXCC
         bool wasAdded = false;
         Pax *pax = new Pax();
         pax->Tag(tag);
+        pax->Dad(root()); // set dad pointer
         wasAdded = add(pax);
         return wasAdded;
     } // method
@@ -95,6 +97,7 @@ namespace PAXCC
         Pax *pax = new Pax();
         pax->Tag(tag);
         pax->Val(val);
+        pax->Dad(root()); // set dad pointer
         wasAdded = add(pax);
         return wasAdded;
     } // method
@@ -143,15 +146,15 @@ namespace PAXCC
     } // method
 
     Pax*
-    SubSet::dad(void)
+    SubSet::root(void)
     {
-        return _dad;
+        return _root;
     } // method
 
     void
-    SubSet::dad(Pax* dad)
+    SubSet::root(Pax* root)
     {
-        _dad = dad;
+        _root = root;
     } // method
 
 } // namespace

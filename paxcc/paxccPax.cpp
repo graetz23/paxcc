@@ -180,7 +180,13 @@ namespace PAXCC
     Pax *
     Pax::Dad(void)
     {
-        return Child()->dad();
+        return _dad;
+    } // method
+
+    void
+    Pax::Dad(Pax* dad)
+    {
+        _dad = dad;
     } // method
 
     std::string Pax::XML(void)

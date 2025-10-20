@@ -71,9 +71,10 @@ HandlerPax::startTag( Str tag ) {
 
   if( _xmlTool.check4Starting( tag ) ) { // check for being '< .. >'
 
-    _level++;  // increase indentation
+    // TODO explode the sting from <tag attrib1="val1" attrib2="val2" .. > to objects
+    Str tag_ = _xmlTool.removeSpikes(tag); // remove '<' and '>'
     
-    Pax* pax = _factory->produce( tag ); // create new Pax
+    Pax* pax = _factory->produce( tag_ ); // create new Pax
     
     _current->Child()->add( pax ); // add to root's children
     _current = pax; // set current to new Pax
@@ -108,7 +109,8 @@ HandlerPax::endTag( Str tag ) {
   for( int t = 0; t < _level; t++ ) // print some white spaces
     std::cout << " " << std::flush;
 
-  _current = _current->Dad(); // set current to parent Pax
+  Pax* dad = _current->Dad(); // get parent Pax
+  _current = dad; // set current to parent Pax
 
   std::cout << tag << std::endl << std::flush;
 
