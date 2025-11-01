@@ -60,6 +60,7 @@ target_sources(${paxcc}
     # adding the PAXCC core classes ..
     ${paxcc_src}/paxccAttributes.cpp
     ${paxcc_src}/paxccChildren.cpp
+    ${paxcc_src}/paxccAFactory.cpp
     ${paxcc_src}/paxccFactory.cpp
     ${paxcc_src}/paxccPax.cpp
     ${paxcc_src}/paxccPaxMap.cpp

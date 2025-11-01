@@ -14,7 +14,7 @@
  *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -24,7 +24,26 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef __paxccAChildren_h__
-#define __paxccAChildren_h__
+#include "./paxccAFactory.h" // header
 
-#endif // __paxccAChildren_h__
+/******************************************************************************/
+
+namespace PAXCC
+{
+    /**************************************************************************/
+
+    /// constructor
+    AFactory::AFactory(void)
+    {
+    } // Factory
+
+    /// destructor
+    AFactory::~AFactory(void)
+    {
+    } // ~Factory
+
+    /**************************************************************************/
+
+} // namespace PAXCC
+
+/******************************************************************************/

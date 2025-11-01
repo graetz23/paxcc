@@ -33,7 +33,7 @@ namespace PAXCC {
 /******************************************************************************/
 
 /// constructor
-Factory::Factory( void ) {
+Factory::Factory( void ) : AFactory() {
 } // Factory
 
 /// destructor

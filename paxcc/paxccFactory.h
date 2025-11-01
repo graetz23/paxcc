@@ -29,8 +29,7 @@
 
 /******************************************************************************/
 
-#include "./paxccDefines.h" // Pax general defines
-#include "./paxccPax.h" // Pax object tree
+#include "./paxccAFactory.h" // PAXCC::AFactory
 
 /******************************************************************************/
 
@@ -38,14 +37,8 @@ namespace PAXCC {
 
 /******************************************************************************/
 
-#ifdef _PAXCC_DEBUG_
-    #define _PAXCC_DEBUG_Factory_
-    #endif
-
-/******************************************************************************/
-
 class /// factory class creating Pax objects
-Factory {
+Factory : public AFactory {
     public:   
 
     Factory( void ); /// constructor

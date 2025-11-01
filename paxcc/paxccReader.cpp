@@ -69,7 +69,7 @@ namespace PAXCC
     {
         std::vector<Pax *> paxList;
         std::vector<std::string> filePaths = listFiles(folderPath);
-        for (int i = 0; i < filePaths.size(); i++)
+        for (size_t i = 0; i < filePaths.size(); i++)
         {
             std::string filePath = filePaths[i];
             std::string ending = ".xml";
@@ -108,7 +108,7 @@ namespace PAXCC
     {
         std::vector<Pax *> paxList;
         std::vector<std::string> filePaths = listFiles(folderPath);
-        for (int i = 0; i < filePaths.size(); i++)
+        for (size_t i = 0; i < filePaths.size(); i++)
         {
             std::string filePath = filePaths[i];
             bool readFile = false;

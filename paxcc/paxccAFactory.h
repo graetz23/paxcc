@@ -24,3 +24,28 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef __paxccAFactory_h__
+#define __paxccAFactory_h__
+
+#include "./paxccDefines.h" // Pax general defines
+#include "./paxccPax.h" // Pax object tree
+
+namespace PAXCC {
+
+class AFactory {
+    public:   
+
+    AFactory( void ); /// constructor
+    virtual ~AFactory( void ); /// destructor
+
+    virtual Pax* produce( Str tag ) = 0; /// create object by tag name
+
+    virtual Pax* produce( Str tag, Str val) = 0; /// create object by tag and value
+
+    virtual Pax* produce( Pax* pax ) = 0; /// create object by copying given object          
+
+}; // class Factory
+
+} // namespace PAXCC
+
+#endif // __paxccAFactory_h__
