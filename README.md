@@ -9,13 +9,14 @@ It is an enabler for parsing any kind of - hierarchically - structured data; e.g
 A simple SAX like interface is available for parsing to a PAX object tree.
 
 A _Pax_ objects can:
-  - store a _tag_ as std::string,
-  - store a _value_ as std::string,
-  - add multiple _attribute_ as a pair of _tag_ and _value_,
-  - add multiple _Pax_ object as _children_ of the current,
-  - generate themselves recursively to XML,
-  - write themselves to XML using the _Writer_,
-  - parse themselves by XML to a _double linked object tree_ using the _Reader_.
+
+- store a _tag_ as std::string,
+- store a _value_ as std::string,
+- add multiple _attribute_ as a pair of _tag_ and _value_,
+- add multiple _Pax_ object as _children_ of the current,
+- generate themselves recursively to XML,
+- write themselves to XML using the _Writer_,
+- parse themselves by XML to a _double linked object tree_ using the _Reader_.
   
 PAXCC is written in C++11 currently (may switch to C++98).
 There are not further dependencies to other libraries or framework.
@@ -215,6 +216,7 @@ For building PAXCC the [CMake - Software Build System](https://cmake.org/) is av
 For modern CMake version install _CMake_ and [Ninja](https://ninja-build.org/).
 
 For generating the _ninja build files_ with _CMake_ and building binaries via _ninja_:
+
 ```bash
   ./build.sh
 ```
@@ -222,11 +224,13 @@ For generating the _ninja build files_ with _CMake_ and building binaries via _n
 If you want to use classical make, you can edit the _build.sh_ bash script easily.
 
 For cleaning up all compiled objects:
+
 ```bash
   ./clean.sh
 ```
 
 To remove the build folder:
+
 ```bash
   rm -rf build/
 ```

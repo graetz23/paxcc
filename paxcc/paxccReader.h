@@ -48,6 +48,8 @@ namespace PAXCC
 
         Pax* read(const Str fileName); // read from file
 
+        std::vector<std::string> listFiles(std::string folderPath); // all files in folder
+
     }; // class
 
 } // namespace PAXCC

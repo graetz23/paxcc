@@ -54,7 +54,7 @@ HandlerPax::~HandlerPax( void ) {
 void // called before reading document
 HandlerPax::startDoc( void ) {
 
-  std::cout << "PAXCC::SAX::HandlerPax starts reading document" << std::endl;
+  // std::cout << "PAXCC::SAX::HandlerPax starts reading document" << std::endl;
 
   _root = _factory->produce( "root" ); // create root object
   _current = _root; // set base pointer to root object
@@ -103,9 +103,9 @@ HandlerPax::startTag( Str tag ) {
 } // if
   
   
-  for( int t = 0; t < _level; t++ ) // print some white spaces
-    std::cout << " " << std::flush;
-  std::cout << tag << std::endl << std::flush;
+  // for( int t = 0; t < _level; t++ ) // print some white spaces
+  //   std::cout << " " << std::flush;
+  // std::cout << tag << std::endl << std::flush;
 
   if(indent) {
     _level += _PAXCC_INDENT_; // increase indentation
@@ -121,9 +121,9 @@ HandlerPax::characters( Str txt ) {
 
   _current->Val( txt ); // set value of current Pax
 
-  for( int t = 0; t < _level; t++ ) // print some white spaces
-    std::cout << " " << std::flush;
-  std::cout << txt << std::endl << std::flush;
+  // for( int t = 0; t < _level; t++ ) // print some white spaces
+  //   std::cout << " " << std::flush;
+  // std::cout << txt << std::endl << std::flush;
 
 } // HandlerPax::characters
 
@@ -139,9 +139,9 @@ HandlerPax::endTag( Str tag ) {
   Pax* dad = _current->Dad(); // get parent Pax
   _current = dad; // set current to parent Pax
 
-  for( int t = 0; t < _level; t++ ) // print some white spaces
-    std::cout << " " << std::flush;
-  std::cout << tag << std::endl << std::flush;
+  // for( int t = 0; t < _level; t++ ) // print some white spaces
+  //   std::cout << " " << std::flush;
+  // std::cout << tag << std::endl << std::flush;
 
 } // HandlerPax::endNode
 
@@ -150,8 +150,8 @@ HandlerPax::endTag( Str tag ) {
 void // called after reading document
 HandlerPax::endDoc( void ) {
 
-  std::cout << "PAXCC::SAX::HandlerPax ends reading document" << std::endl
-    << std::flush;
+  // std::cout << "PAXCC::SAX::HandlerPax ends reading document" << std::endl
+  //   << std::flush;
 
 } // HandlerPax::endDocument
 

@@ -3,6 +3,7 @@ paxcc_example
 build/
 .build/
 doc/
+xml/
 example*
 
 # Prerequisites

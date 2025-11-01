@@ -25,13 +25,25 @@
  */
 
 #include <iostream>
-#include "./paxcc/paxcc.h"
+#include "./paxcc/paxcc.h" // the paxcc lib ..
 
 using namespace PAXCC;
 
 int main(int arc, char **argv)
 {
 
+  PaxReader reader;
+  std::vector<std::string> filePaths = reader.listFiles("./xml");
+  for(int i = 0; i < filePaths.size(); i++) {
+    std::string filePath = filePaths[i];
+    // std::cout << filePath << std::endl;
+    Pax* root = reader.read(filePath); // read from file
+    // std::cout << std::endl << std::endl; // print out
+    std::string xml__ = root->XML();  // generate XML from object tree ..
+    // std::cout << xml__ << std::endl; // print out
+    delete root;
+  } // loop
+  
   Pax *pax1 = new Pax("Bob", "Dylon");
   pax1->Attrib()->add("plays", "guitar");
   pax1->Attrib()->add("sings", "songs");
@@ -78,7 +90,7 @@ int main(int arc, char **argv)
 
   delete pax1; // working recursively well on first run ..
 
-  PaxReader reader;
+  // PaxReader reader;
   // reader.read("example_output.xml"); // read from file
   Pax* root = reader.read("example_output.xml"); // read from file
   std::cout << std::endl << std::endl; // print out

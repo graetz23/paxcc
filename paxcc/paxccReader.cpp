@@ -24,7 +24,8 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
- #include "./paxccReader.h"
+#include "dirent.h" // only UNIX ..
+#include "./paxccReader.h"
 #include "./paxccSysXmlParser.h" // SAX::Handler
 #include "./paxccSaxHandler.h" // SAX::Handler
 #include "./paxccSaxHandlerExample.h" // SAX::HandlerExample
@@ -47,11 +48,41 @@ namespace PAXCC
 
     Pax* PaxReader::read(const Str fileName)
     {
-        std::cout << "PaxReader::read(): Reading file '" << fileName << "' ..." << std::endl;
+        // std::cout << "PaxReader::read(): Reading file '" << fileName << "' .." << std::endl;
         // use the XML parser to read the file
         _parser->parse(fileName);
         Pax* root = _paxHandler->Root();
         return root;
     } // read
+
+    std::vector<std::string> PaxReader::listFiles(std::string folderPath) {
+        std::vector<std::string> filePaths;;
+        if (!folderPath.empty() && *folderPath.rbegin() != '/') {
+            folderPath += '/'; // make sure it ends with a slash ..
+        } // if
+        const char* folderPath_ = folderPath.c_str();
+        DIR* directory = opendir (folderPath_);
+        if (directory != NULL) {
+            struct dirent* fileName_ = NULL;
+            // readDir has to be called often ..
+            while ((fileName_ = readdir(directory)) != NULL) { 
+            std::string fileName = std::string(fileName_->d_name);
+            // std::cout << fileName << std::endl;
+            std::string filePath = folderPath;
+            filePath.append(fileName);
+            // std::cout << filePath << std::endl;
+            filePaths.push_back(filePath);
+            } // loop
+            if(filePaths.size() > 2) {
+            filePaths.erase(filePaths.begin()); // remove .
+            filePaths.erase(filePaths.begin()); // remove ..
+            } // if
+            std::sort(filePaths.begin(), filePaths.end());
+            closedir (directory);
+        } else { // could not open directory
+            std::cout << "can not find directory " << folderPath << std::endl;
+        } // if
+        return filePaths;
+    } // method
 
 } // namespace PAXCC
