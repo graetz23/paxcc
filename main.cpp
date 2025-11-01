@@ -31,19 +31,6 @@ using namespace PAXCC;
 
 int main(int arc, char **argv)
 {
-
-  PaxReader reader;
-  std::vector<std::string> filePaths = reader.listFiles("./xml");
-  for(int i = 0; i < filePaths.size(); i++) {
-    std::string filePath = filePaths[i];
-    // std::cout << filePath << std::endl;
-    Pax* root = reader.read(filePath); // read from file
-    std::cout << std::endl << std::endl; // print out
-    std::string xml__ = root->XML();  // generate XML from object tree ..
-    std::cout << xml__ << std::endl; // print out
-    delete root;
-  } // loop
-  
   Pax *pax1 = new Pax("Bob", "Dylon");
   pax1->Attrib()->add("plays", "guitar");
   pax1->Attrib()->add("sings", "songs");
@@ -65,37 +52,48 @@ int main(int arc, char **argv)
   pax2->Child()->add(pax4); // pax3 as child of pax2
 
   std::string xml = pax1->XML();
-  std::cout << xml << std::endl << std::flush;
-  
-  Pax* pax2_ = pax1->Child("Dolly");
+  std::cout << xml << std::endl
+            << std::flush;
 
-  Pax* pax3_ = pax2->Child("Johnny"); // from pax2
-  
-  Pax* pax4_ = pax1->Child("Dolly")->Child("John"); // chained
-  
+  Pax *pax2_ = pax1->Child("Dolly");
+
+  Pax *pax3_ = pax2->Child("Johnny"); // from pax2
+
+  Pax *pax4_ = pax1->Child("Dolly")->Child("John"); // chained
+
   std::string val3_ = pax1->Child("Dolly")->Child("Johnny")->Val();
 
-  Pax* pax = pax1->Child("Dolly")->Child("John"); // chained
+  Pax *pax = pax1->Child("Dolly")->Child("John"); // chained
   std::string tag = pax->Tag();
   std::string val = pax->Val();
   std::string attribTag = pax->Attrib("sings")->Tag();
   std::string attribVal = pax->Attrib("sings")->Val();
 
-
-  std::string xml_ = pax1->XML();  // generate XML from object tree ..
+  std::string xml_ = pax1->XML(); // generate XML from object tree ..
   std::cout << xml_ << std::endl; // print out
 
   PaxWriter writer;
-  writer.write("example_output.xml", pax1); // write to file  
+  writer.write("example_output.xml", pax1); // write to file
 
   delete pax1; // working recursively well on first run ..
 
-  // PaxReader reader;
-  // reader.read("example_output.xml"); // read from file
-  Pax* root = reader.read("example_output.xml"); // read from file
-  std::cout << std::endl << std::endl; // print out
-  std::string xml__ = root->XML();  // generate XML from object tree ..
+  PaxReader reader;
+
+  Pax *root = reader.read("example_output.xml"); // read from file
+  std::cout << std::endl
+            << std::endl;          // print out
+  std::string xml__ = root->XML(); // generate XML from object tree ..
   std::cout << xml__ << std::endl; // print out
+
+  std::vector<Pax*> paxList = reader.readAll("./xml"); // read all from folder
+  // std::vector<Pax *> paxList = reader.readAll("./xml", ".xml");
+  for(int i = 0; i < paxList.size(); i++) {
+    std::cout << "Read file " << (i + 1) << ":" << std::endl;
+    std::string xml = paxList[i]->XML();
+    std::cout << xml << std::endl;
+    Pax *pax = paxList[i];
+    delete pax;
+  } // for
 
   return 0;
 } // main

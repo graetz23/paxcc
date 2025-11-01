@@ -35,27 +35,25 @@ namespace SAX {
 
 /// constructor
 HandlerPax::HandlerPax( void ) {
-
   _level = 0;
   _current = 0; /// C++98 C++03 C++11
-  //_current = nullptr; /// modern
+  // _current = nullptr; /// modern
 
   // TODO take this from some global static later for abstract factoy pattern
   _factory = new Factory(); // creating standard factory
 
   _tokenizer = new PaxTokenizer(); // creating tokenizer
-
 } // HandlerPax
 
 /// destructor
 HandlerPax::~HandlerPax( void ) {
-  if(_factory != 0) {
-    delete _factory;
-    _factory = 0;
-  } // if
   if(_tokenizer != 0) {
     delete _tokenizer;
     _tokenizer = 0;
+  } // if
+  if(_factory != 0) {
+    delete _factory;
+    _factory = 0;
   } // if
 } // ~HandlerPax
 
@@ -63,12 +61,7 @@ HandlerPax::~HandlerPax( void ) {
 
 void // called before reading document
 HandlerPax::startDoc( void ) {
-
-  // std::cout << "PAXCC::SAX::HandlerPax starts reading document" << std::endl;
-
-  _root = _factory->produce( "root" ); // create root object
-  _current = _root; // set base pointer to root object
-
+  // nothing to do here ..
 } // HandlerPax::startDocument
 
 /******************************************************************************/
@@ -76,28 +69,19 @@ HandlerPax::startDoc( void ) {
 void // called for each starting XML tag
 HandlerPax::startTag( Str tag ) {
 
-  bool indent = false; // should we increase indentation
-
   Pax* pax = _tokenizer->convert( tag ); // convert tag to Pax object(s)
 
-  _current->Child()->add( pax ); // add to root's children
-  
-  // TODO handle XML standalone tags properly ..
+  if(_level == 0) { // only for root ..
+    _root = pax; // set root Pax
+  } else {
+    _current->Child()->add( pax ); // add to root's children
+  } // if
+
   bool isStandAloneTag = _xmlTool.check4StandAlone( tag );
   if(!isStandAloneTag) {
-  _current = pax; // set current to new Pax
+    _current = pax; // set current to new Pax
+    _level++;
   } // if
-
-  indent = true; // increase indentation
-    
-  // for( int t = 0; t < _level; t++ ) // print some white spaces
-  //   std::cout << " " << std::flush;
-  // std::cout << tag << std::endl << std::flush;
-
-  if(indent) {
-    _level += _PAXCC_INDENT_; // increase indentation
-  } // if
-
 
 } // HandlerPax::startNode
 
@@ -108,10 +92,6 @@ HandlerPax::characters( Str txt ) {
 
   _current->Val( txt ); // set value of current Pax
 
-  // for( int t = 0; t < _level; t++ ) // print some white spaces
-  //   std::cout << " " << std::flush;
-  // std::cout << txt << std::endl << std::flush;
-
 } // HandlerPax::characters
 
 /******************************************************************************/
@@ -119,16 +99,10 @@ HandlerPax::characters( Str txt ) {
 void // called for each ending XML tag
 HandlerPax::endTag( Str tag ) {
 
-  _level -= _PAXCC_INDENT_; // reduce indentation
-  if(_level < 0) 
-    _level = 0;
-
   Pax* dad = _current->Dad(); // get parent Pax
   _current = dad; // set current to parent Pax
 
-  // for( int t = 0; t < _level; t++ ) // print some white spaces
-  //   std::cout << " " << std::flush;
-  // std::cout << tag << std::endl << std::flush;
+  _level--;
 
 } // HandlerPax::endNode
 
@@ -136,10 +110,7 @@ HandlerPax::endTag( Str tag ) {
 
 void // called after reading document
 HandlerPax::endDoc( void ) {
-
-  // std::cout << "PAXCC::SAX::HandlerPax ends reading document" << std::endl
-  //   << std::flush;
-
+  // nothing to do here ..
 } // HandlerPax::endDocument
 
 /******************************************************************************/

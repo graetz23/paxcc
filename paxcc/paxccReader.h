@@ -39,6 +39,7 @@ namespace PAXCC
         protected:
         
         SAX::HandlerPax* _paxHandler; /// XML handler instance
+
         SYS::XmlParser* _parser; /// XML parser instance
 
         public:
@@ -47,6 +48,14 @@ namespace PAXCC
         virtual ~PaxReader(void); // destructor
 
         Pax* read(const Str fileName); // read from file
+
+        std::vector<Pax*> readAll(const Str folderPath); // read all files in folder
+
+        std::vector<Pax*> readAll(
+            const Str folderPath, 
+            const  Str fileEnding); // read all files in folder
+    
+        protected:
 
         std::vector<std::string> listFiles(std::string folderPath); // all files in folder
 
