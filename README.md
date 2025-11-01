@@ -322,6 +322,7 @@ Have fun :-)
 
 - 251101 Adding Tokenizer for XML sequences.
          Extending Pax Reader for parsing files from folder.
+         Adding set method to attributes and children.
 - 251020 Extending CMake build configuration to settle C++ version.
          Switching to C++11, due to unordered_map usage yet: target C++03 or C++98.
          Adding double linked object tree feature, having a parent each.
