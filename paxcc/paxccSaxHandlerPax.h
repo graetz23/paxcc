@@ -32,6 +32,8 @@
 #include "./paxccSaxHandler.h" // for converting strings 2 objects
 #include "./paxccPax.h" // Pax object tree
 #include "./paxccFactory.h" // Pax object tree factory
+#include "./paxccPaxTokenizer.h" // Pax* tokenizer
+/******************************************************************************/
 
 namespace PAXCC {
 
@@ -76,6 +78,8 @@ HandlerPax: public Handler {
     SYS::XmlTool _xmlTool; /// tool class for std::string manipulations
 
     SYS::StrTool _strTool; /// tool class for XML tag & text manipulations
+
+    PaxTokenizer* _tokenizer; /// for converting strings 2 Pax* objects
 
   private:
 

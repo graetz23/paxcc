@@ -63,6 +63,7 @@ target_sources(${paxcc}
     ${paxcc_src}/paxccFactory.cpp
     ${paxcc_src}/paxccPax.cpp
     ${paxcc_src}/paxccPaxMap.cpp
+    ${paxcc_src}/paxccPaxTokenizer.cpp
     ${paxcc_src}/paxccReader.cpp
     ${paxcc_src}/paxccSubSet.cpp
     ${paxcc_src}/paxccWriter.cpp

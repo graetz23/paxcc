@@ -38,9 +38,9 @@ int main(int arc, char **argv)
     std::string filePath = filePaths[i];
     // std::cout << filePath << std::endl;
     Pax* root = reader.read(filePath); // read from file
-    // std::cout << std::endl << std::endl; // print out
+    std::cout << std::endl << std::endl; // print out
     std::string xml__ = root->XML();  // generate XML from object tree ..
-    // std::cout << xml__ << std::endl; // print out
+    std::cout << xml__ << std::endl; // print out
     delete root;
   } // loop
   
