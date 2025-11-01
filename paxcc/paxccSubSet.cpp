@@ -102,6 +102,24 @@ namespace PAXCC
         return wasAdded;
     } // method
 
+    bool SubSet::set(std::string tag, std::string val)
+    {
+        bool wasSet = false;
+        if (has(tag))
+        { // update the value of existing pax ..
+            Pax* pax = get(tag);
+            pax->Val(val);
+            wasSet = true;
+        } else { // add new pax ..
+            Pax* pax = new Pax();
+            pax->Tag(tag);
+            pax->Val(val);
+            pax->Dad(root()); // set dad pointer
+            wasSet = add(pax);
+        } // if
+        return wasSet;
+    } // method
+
     Pax *
     SubSet::get(std::string tag)
     {

@@ -52,6 +52,8 @@ namespace PAXCC
         bool add(std::string tag);                  // method
         bool add(std::string tag, std::string val); // method
 
+        bool set(std::string tag, std::string val); // method
+
         Pax *get(std::string tag); // method
         bool del(std::string tag); // method
 
