@@ -28,6 +28,8 @@ How to use _Pax_, build object tree, and what can go wrong.
 
 ### Creating, Setting, Changing, and Deleting _Pax_ trees
 
+#### Creating a Pax Object
+
 Creating _Pax_ objects:
 
 ```C++
@@ -40,6 +42,8 @@ Creating _Pax_ objects:
   Pax* pax3 = new Pax("Bob");
 ```
 
+#### Adding Attributes to a Pax Object
+
 Adding _Attributes_ to _Pax_ objects:
 
 ```C++
@@ -47,6 +51,8 @@ Adding _Attributes_ to _Pax_ objects:
   pax1->Attrib()->add("plays", "guitar");
   pax1->Attrib()->add("sings", "songs");
 ```
+
+#### Adding Children to a Pax Object
 
 Adding _Children_ to _Pax_ objects:
 
@@ -59,7 +65,9 @@ Adding _Children_ to _Pax_ objects:
   pax2->Child()->add(pax3); // pax3 as child of pax2
 ```
 
-Deleting _Pax_ objects:
+#### Deleting Pax Object
+
+Deleting any _Pax_ object by recursive destructor:
 
 ```C++
   Pax* root = new Pax("Bob", "Dylon");
@@ -71,6 +79,8 @@ Deleting _Pax_ objects:
 
   delete root; // runs recursively ..
 ```
+
+#### Generating XML from a Pax Object
 
 Generating XML from _Pax_ and writing to _std::out_:
 
@@ -113,6 +123,8 @@ The XML of above example looks like:
   </Bob>
 ````
 
+#### Access Pax Child Objects
+
 Retrieving _Pax_ from above example:
 
 ```C++
@@ -125,6 +137,8 @@ Retrieving _Pax_ from above example:
   Pax* pax4_ = pax1->Child("Dolly")->Child("John"); // chained
 ```
 
+#### Accessing Tag and Value
+
 Retrieving _Tag_ and _Value_:
 
 ```C++
@@ -132,6 +146,8 @@ Retrieving _Tag_ and _Value_:
   std::string tag = pax->Tag();
   std::string val = pax->Val();
 ```
+
+#### Accessing Tag and Value of Attributes
 
 Retrieving _Attributes_ _Tag_ and _Value_:
 
@@ -207,6 +223,65 @@ This leads to the fact, that if one wants to change data on treed _Pax_,
 he has to also deal with the object tree. Therefore, retrieving the object
 above, deleting the _Pax_ from object tree, changing it, and adding it again.
 
+### Input and Output with Pax Objects
+
+#### Writing a Pax Object to Console
+
+Writing a _Pax_ Object to Console:
+
+```C++
+  // build some Pax object named pax1
+  std::string xml = pax1->XML(); // generate XML from object tree ..
+  std::cout << xml << std::endl; // print out
+```
+
+#### Writing Pax Object to File
+
+Writing a _Pax_ Object to file:
+
+```C++
+  // build some Pax object named pax1
+  PaxWriter writer;
+  writer.write("example_output.xml", pax1); // write to file
+  delete pax1; // working recursively well on first run ..
+```
+
+### Reading a Pax Object from File
+
+Reading a _Pax_ Object from File:
+
+```C++
+  PaxReader reader;
+  Pax* pax1 = reader.read("example_output.xml"); // read from file
+  delete pax1; // working recursively well on first run ..
+```
+
+#### Reading some Pax Objects from Folder
+
+Reading several _Pax_ Objects from a folder:
+
+```C++
+  PaxReader reader;
+  std::vector<Pax*> paxList = reader.readAll("./folderPath"); // read all from folder
+  for(int i = 0; i < paxList.size(); i++) {
+    Pax* pax1 = paxList[i];
+    delete pax1; // working recursively well on first run ..
+  } // for
+```
+
+#### Reading some Pax Objects from Folder for certain File Ending
+
+Reading several _Pax_ Objects from a folder by a given file ending:
+
+```C++
+  PaxReader reader;
+  std::vector<Pax*> paxList = reader.readAll("./folderPath", ".xsd"); // read all from folder
+  for(int i = 0; i < paxList.size(); i++) {
+    Pax* pax1 = paxList[i];
+    delete pax1; // working recursively well on first run ..
+  } // for
+```
+
 ## Building the PAXCC
 
 For building PAXCC the [CMake - Software Build System](https://cmake.org/) is available.
@@ -215,6 +290,8 @@ For building PAXCC the [CMake - Software Build System](https://cmake.org/) is av
 
 For modern CMake version install _CMake_ and [Ninja](https://ninja-build.org/).
 
+#### Build PAXCC
+
 For generating the _ninja build files_ with _CMake_ and building binaries via _ninja_:
 
 ```bash
@@ -222,6 +299,8 @@ For generating the _ninja build files_ with _CMake_ and building binaries via _n
 ```
 
 If you want to use classical make, you can edit the _build.sh_ bash script easily.
+
+#### Clean PAXCC
 
 For cleaning up all compiled objects:
 
@@ -241,6 +320,8 @@ Have fun :-)
 
 ## ChangeLog
 
+- 251101 Adding Tokenizer for XML sequences.
+         Extending Pax Reader for parsing files from folder.
 - 251020 Extending CMake build configuration to settle C++ version.
          Switching to C++11, due to unordered_map usage yet: target C++03 or C++98.
          Adding double linked object tree feature, having a parent each.
