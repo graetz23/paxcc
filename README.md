@@ -317,22 +317,3 @@ To remove the build folder:
 ## Closings
 
 Have fun :-)
-
-## ChangeLog
-
-- 251101 Adding Tokenizer for XML sequences.
-         Extending Pax Reader for parsing files from folder.
-         Adding set method to attributes and children.
-- 251020 Extending CMake build configuration to settle C++ version.
-         Switching to C++11, due to unordered_map usage yet: target C++03 or C++98.
-         Adding double linked object tree feature, having a parent each.
-- 251019 Adding CMake build configuration.
-         Adding some kind of SAX C++98 XML parser without any dependencies.
-- 250202 Adding _Visual Studio Code_ debugging configuration using g++ and gdb.
-         Adding _PaxMap_ a sequence ordered hash map as template implementation.
-         Adding _Pax_ keeping _Children_ and _Attributes_ that have _Pax_ types
-         again, representing a complex _Composite Pattern_ from the _Software
-         Design Patterns_ philosophy. Adding recursive generation of XML for
-         Pax build object trees. Adding possibility to add any Pax of same tag
-         name.
-- 250201 Created the paxcc project and added make.
